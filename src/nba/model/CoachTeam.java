@@ -21,12 +21,24 @@ public class CoachTeam {
   public boolean equals(Object obj) {
     if (obj != null && obj.getClass().equals(this.getClass())) {
       CoachTeam coachTeam = (CoachTeam) obj;
-      boolean flag =
-          coachTeam.getCoach().equals(coachName) && coachTeam.getTeam().equals(teamName);
-      flag = flag && (coachTeam.getEndYear() >= startYear || coachTeam.getStartYear() <= endYear);
+      boolean flag = coachTeam.getCoach().equals(coachName) && coachTeam.getTeam().equals(teamName);
+      flag = flag && isIntersect(coachTeam);
       return flag;
     }
     return false;
+  }
+
+  // 判断两个对象的年份是否有交集
+  private boolean isIntersect(CoachTeam coachTeam) {
+    return isIntersect(startYear, endYear, coachTeam.getStartYear(), coachTeam.getEndYear());
+  }
+
+  private boolean isIntersect(int start1, int end1, int start2, int end2) {
+    boolean flag = false;
+    flag = flag || (start1 >= start2 && start1 <= end2);
+    flag = flag || (end1 >= start2 && end1 <= end2);
+    flag = flag || (start1 < start2 && end1 > end2);
+    return flag;
   }
 
   @Override

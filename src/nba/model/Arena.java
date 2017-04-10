@@ -1,5 +1,6 @@
 package nba.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Arena {
@@ -13,6 +14,8 @@ public class Arena {
     this.name = name;
     this.birth = birth;
     this.age = age;
+    arenaTeams = new LinkedList<ArenaTeam>();
+    locations = new LinkedList<Location>();
   }
 
   public Arena() {
@@ -75,5 +78,13 @@ public class Arena {
 
   public void setArenaTeams(List<ArenaTeam> arenaTeams) {
     this.arenaTeams = arenaTeams;
+  }
+
+  public List<Location> getLocations() {
+    return locations;
+  }
+
+  public void setLocations(List<Location> locations) {
+    this.locations = locations;
   }
 }

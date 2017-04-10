@@ -26,10 +26,23 @@ public class Location {
       boolean flag =
           location.getName().equals(name) && location.getCapacity() == capacity
               && location.getArenaName().equals(arenaName);
-      flag = flag && (location.getEndYear() >= startYear || location.getStartYear() <= endYear);
+      flag = flag && isIntersect(location);
       return flag;
     }
     return false;
+  }
+
+  // 判断两个对象的年份是否有交集
+  private boolean isIntersect(Location location) {
+    return isIntersect(startYear, endYear, location.getStartYear(), location.getEndYear());
+  }
+
+  private boolean isIntersect(int start1, int end1, int start2, int end2) {
+    boolean flag = false;
+    flag = flag || (start1 >= start2 && start1 <= end2);
+    flag = flag || (end1 >= start2 && end1 <= end2);
+    flag = flag || (start1 < start2 && end1 > end2);
+    return flag;
   }
 
   @Override

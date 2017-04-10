@@ -2,13 +2,13 @@ package nba.model;
 
 public class Season {
   private String playerName;// 赛季所属球员
-  private int playerBirth;//球员出生年份
+  private int playerBirth;// 球员出生年份
   private String teamAbbr;// 赛季所属球队
   private int point;// 该赛季得分
   private int game_num;// 该赛季参加的场数
   private int year;// 该赛季年份（结束年）
 
-  public Season(String player, String team,int playerBirth, int point, int game_num, int year) {
+  public Season(String player, String team, int playerBirth, int point, int game_num, int year) {
     this.playerName = player;
     this.teamAbbr = team;
     this.point = point;
@@ -18,7 +18,7 @@ public class Season {
   }
 
   public Season() {
-    this("", "",0, 0, 0, 0);
+    this("", "", 0, 0, 0, 0);
   }
 
   @Override
