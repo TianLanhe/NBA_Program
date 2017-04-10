@@ -1,4 +1,4 @@
-package model;
+package nba.model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +17,23 @@ public class Coach {
   }
 
   public void addCoachTeam(CoachTeam coachTeam) {
-    coachTeams.add(coachTeam);
+    if (coachTeam != null && !coachTeams.contains(coachTeam)) coachTeams.add(coachTeam);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj != null && obj.getClass().equals(this.getClass())) {
+      Coach coach = (Coach) obj;
+      return coach.getName().equals(name);
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = result * 31 + name.hashCode();
+    return result;
   }
 
   public String getName() {

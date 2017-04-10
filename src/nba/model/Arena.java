@@ -1,4 +1,4 @@
-package model;
+package nba.model;
 
 import java.util.List;
 
@@ -20,12 +20,30 @@ public class Arena {
   }
 
   public void addArenaTeam(ArenaTeam arenaTeam) {
-    arenaTeams.add(arenaTeam);
+    if (arenaTeam != null && !arenaTeams.contains(arenaTeam)) arenaTeams.add(arenaTeam);
   }
 
   public void addLocation(Location location) {
-    locations.add(location);
+    if (location != null && !locations.contains(location)) locations.add(location);
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj != null && obj.getClass().equals(this.getClass())) {
+      Arena arena = (Arena) obj;
+      return arena.getName().equals(name) && arena.getBirth() == birth;
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = result * 31 + name.hashCode();
+    result = result * 31 + birth;
+    return result;
+  }
+
 
   public String getName() {
     return name;

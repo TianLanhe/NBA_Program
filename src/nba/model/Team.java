@@ -1,4 +1,4 @@
-package model;
+package nba.model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +32,35 @@ public class Team {
 
   public Team() {
     this("", "", 0, 0, 0, 0, 0);
+  }
+
+  public void addSeason(Season season) {
+    if (season != null && !seasons.contains(season)) seasons.add(season);
+  }
+
+  public void addCoachTeam(CoachTeam coachTeam) {
+    if (coachTeam != null && !coachTeams.contains(coachTeam)) coachTeams.add(coachTeam);
+  }
+
+  public void addArenaTeam(ArenaTeam arenaTeam) {
+    if (arenaTeam != null && !arenaTeams.contains(arenaTeam)) arenaTeams.add(arenaTeam);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj != null && obj.getClass().equals(this.getClass())) {
+      Team team = (Team) obj;
+      return team.getName().equals(name) && team.getBirth() == birth_year;
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = 17;
+    result = result * 31 + name.hashCode();
+    result = result * 31 + birth_year;
+    return result;
   }
 
   public void setName(String name) {
@@ -88,18 +117,6 @@ public class Team {
 
   public int getChampNum() {
     return champion_num;
-  }
-
-  public void addSeason(Season season) {
-    seasons.add(season);
-  }
-
-  public void addCoachTeam(CoachTeam coachTeam) {
-    coachTeams.add(coachTeam);
-  }
-
-  public void addArenaTeam(ArenaTeam arenaTeam) {
-    arenaTeams.add(arenaTeam);
   }
 
   public List<Season> getSeasons() {
