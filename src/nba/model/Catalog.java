@@ -1,6 +1,6 @@
 package nba.model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Catalog {
@@ -17,14 +17,14 @@ public class Catalog {
   private List<ArenaTeam> arenaTeams;
 
   private Catalog() {
-    players = new LinkedList<Player>();
-    seasons = new LinkedList<Season>();
-    teams = new LinkedList<Team>();
-    coachs = new LinkedList<Coach>();
-    coachTeams = new LinkedList<CoachTeam>();
-    arenas = new LinkedList<Arena>();
-    locations = new LinkedList<Location>();
-    arenaTeams = new LinkedList<ArenaTeam>();
+    players = new ArrayList<Player>();
+    seasons = new ArrayList<Season>();
+    teams = new ArrayList<Team>();
+    coachs = new ArrayList<Coach>();
+    coachTeams = new ArrayList<CoachTeam>();
+    arenas = new ArrayList<Arena>();
+    locations = new ArrayList<Location>();
+    arenaTeams = new ArrayList<ArenaTeam>();
   }
 
   public static Catalog getInstance() {

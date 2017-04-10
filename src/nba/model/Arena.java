@@ -1,25 +1,21 @@
 package nba.model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Arena {
   private String name;
-  private int birth;
-  private int age;
   private List<ArenaTeam> arenaTeams;
   private List<Location> locations;
 
-  public Arena(String name, int birth, int age) {
+  public Arena(String name) {
     this.name = name;
-    this.birth = birth;
-    this.age = age;
-    arenaTeams = new LinkedList<ArenaTeam>();
-    locations = new LinkedList<Location>();
+    arenaTeams = new ArrayList<ArenaTeam>();
+    locations = new ArrayList<Location>();
   }
 
   public Arena() {
-    this("", 0, 0);
+    this("");
   }
 
   public void addArenaTeam(ArenaTeam arenaTeam) {
@@ -34,7 +30,7 @@ public class Arena {
   public boolean equals(Object obj) {
     if (obj != null && obj.getClass().equals(this.getClass())) {
       Arena arena = (Arena) obj;
-      return arena.getName().equals(name) && arena.getBirth() == birth;
+      return arena.getName().equals(name);
     }
     return false;
   }
@@ -43,7 +39,6 @@ public class Arena {
   public int hashCode() {
     int result = 17;
     result = result * 31 + name.hashCode();
-    result = result * 31 + birth;
     return result;
   }
 
@@ -54,22 +49,6 @@ public class Arena {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public int getBirth() {
-    return birth;
-  }
-
-  public void setBirth(int birth) {
-    this.birth = birth;
-  }
-
-  public int getAge() {
-    return age;
-  }
-
-  public void setAge(int age) {
-    this.age = age;
   }
 
   public List<ArenaTeam> getArenaTeams() {

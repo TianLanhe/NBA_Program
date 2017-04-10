@@ -13,18 +13,14 @@ public class ArenaTest {
 
   @BeforeClass
   public static void setUpBeforeClass() throws Exception {
-    arena = new Arena("AirCanadaCentre", 1999, 15);
+    arena = new Arena("AirCanadaCentre");
   }
 
   @Test
-  // Arena是否相等取决于球场名字和球场诞生年份，与年龄无关
   public void ArenaEqualTest() {
     Assert.assertEquals(arena, arena);
 
-    Arena arena2 = new Arena("AirCanadaCentre", 1999, 15);
-    Assert.assertEquals(arena, arena2);
-
-    arena2 = new Arena("AirCanadaCentre", 1999, 16);
+    Arena arena2 = new Arena("AirCanadaCentre");
     Assert.assertEquals(arena, arena2);
   }
 
@@ -33,10 +29,7 @@ public class ArenaTest {
     Arena arena2 = new Arena();
     Assert.assertNotEquals(arena, arena2);
 
-    arena2 = new Arena("another_areaName", 1999, 15);
-    Assert.assertNotEquals(arena, arena2);
-
-    arena2 = new Arena("AirCanadaCentre", 1998, 15);
+    arena2 = new Arena("another_areaName");
     Assert.assertNotEquals(arena, arena2);
   }
 

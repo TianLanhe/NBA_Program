@@ -1,6 +1,6 @@
 package nba.model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -12,7 +12,7 @@ public class Player {
   public Player(String name, int birth_year) {
     this.name = name;
     this.birth_year = birth_year;
-    seasons = new LinkedList<Season>();
+    seasons = new ArrayList<Season>();//一个球员说具有的赛季数不多
   }
 
   public Player() {

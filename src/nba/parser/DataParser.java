@@ -137,16 +137,10 @@ public class DataParser {
 
   private void parseArena() {
     String arenaName = words[21].trim();
-    String start_end = words[20].trim();
-
-    if (arenaName.isEmpty() || start_end.isEmpty()) {
+    if (arenaName.isEmpty()) {
       arena = null;
     } else {
-      int age, birth;
-      birth = Integer.parseInt(start_end.substring(0, start_end.indexOf("-")));
-      age = Integer.parseInt(start_end.substring(start_end.indexOf("-") + 1)) - birth;
-
-      arena = new Arena(arenaName, birth, age);
+      arena = new Arena(arenaName);
     }
   }
 

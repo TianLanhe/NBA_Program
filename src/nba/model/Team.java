@@ -1,6 +1,6 @@
 package nba.model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
@@ -25,9 +25,9 @@ public class Team {
     this.win_num = win_num;
     this.champion_num = champion_num;
 
-    seasons = new LinkedList<Season>();
-    coachTeams = new LinkedList<CoachTeam>();
-    arenaTeams = new LinkedList<ArenaTeam>();
+    seasons = new ArrayList<Season>();
+    coachTeams = new ArrayList<CoachTeam>();
+    arenaTeams = new ArrayList<ArenaTeam>();
   }
 
   public Team() {

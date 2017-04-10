@@ -1,6 +1,6 @@
 package nba.model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coach {
@@ -9,7 +9,7 @@ public class Coach {
 
   public Coach(String name) {
     this.name = name;
-    coachTeams = new LinkedList<CoachTeam>();
+    coachTeams = new ArrayList<CoachTeam>();
   }
 
   public Coach() {

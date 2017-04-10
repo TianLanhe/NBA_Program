@@ -21,7 +21,22 @@ public class Main {
         return;
       }
 
+      catalog.addPlayer(dataParser.getPlayer());
+      catalog.addArena(dataParser.getArena());
+      catalog.addArenaTeam(dataParser.getArenaTeam());
+      catalog.addTeam(dataParser.getTeam());
+      catalog.addCoach(dataParser.getCoach());
+      catalog.addCoachTeam(dataParser.getCoachTeam());
       catalog.addLocation(dataParser.getLocation());
+      catalog.addSeason(dataParser.getSeason());
     }
+    System.out.println("Players: "+catalog.getPlayers().size());
+    System.out.println("Seasons: "+catalog.getSeasons().size());
+    System.out.println("Teams: "+catalog.getTeams().size());
+    System.out.println("Coachs: "+catalog.getCoachs().size());
+    System.out.println("CoachTeams: "+catalog.getCoachTeams().size());
+    System.out.println("Arenas: "+catalog.getArenas().size());
+    System.out.println("ArenaTeams: "+catalog.getArenaTeams().size());
+    System.out.println("Locations: "+catalog.getLocations().size());
   }
 }
