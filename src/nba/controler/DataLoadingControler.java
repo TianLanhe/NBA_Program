@@ -23,8 +23,8 @@ public class DataLoadingControler {
   private Location location;
   private Season season;
 
-  private DataLoader dataLoader;//数据加载器
-  private DataParser dataParser;//数据解析器
+  private DataLoader dataLoader;// 数据加载器
+  private DataParser dataParser;// 数据解析器
 
   public DataLoadingControler(DataLoader dataLoader, DataParser dataParser) {
     this.dataLoader = dataLoader;
@@ -33,16 +33,16 @@ public class DataLoadingControler {
 
   public boolean loadData(String dataSource) {
     Catalog catalog = Catalog.getInstance();
-    if (!dataLoader.loadFrom(dataSource)) { //打開文件
+    if (!dataLoader.loadFrom(dataSource)) { // 打開文件
       return false;
     }
     while (dataLoader.hasNext()) {
-      String string = dataLoader.next();    //連續讀取每一行
-      if (!dataParser.parseData(string)) {  //交給解析器解析，解析器解析出每個對象
+      String string = dataLoader.next(); // 連續讀取每一行
+      if (!dataParser.parseData(string)) { // 交給解析器解析，解析器解析出每個對象
         return false;
       }
 
-      player = dataParser.getPlayer();  //從解析器中讀取出剛解析出來的每個對象
+      player = dataParser.getPlayer(); // 從解析器中讀取出剛解析出來的每個對象
       team = dataParser.getTeam();
       coach = dataParser.getCoach();
       coachTeam = dataParser.getCoachTeam();
@@ -51,18 +51,18 @@ public class DataLoadingControler {
       season = dataParser.getSeason();
       location = dataParser.getLocation();
 
-      catalog.addPlayer(player);   //将对象添加进总表，由总表对象负责判断是否已添加过。
-      catalog.addSeason(season);   //如果添加过，则返回之前添加的对象的引用
+      catalog.addPlayer(player); // 将对象添加进总表，由总表对象负责判断是否已添加过。
+      catalog.addSeason(season); // 如果添加过，则返回之前添加的对象的引用
       catalog.addTeam(team);
       catalog.addCoach(coach);
       catalog.addArena(arena);
       catalog.addLocation(location);
       catalog.addCoachTeam(coachTeam);
       catalog.addArenaTeam(arenaTeam);
-      
+
     }
 
-    catalog.setAssociations();
+    catalog.setAssociations(); // 设置对象之间的联系
     return true;
   }
 }
