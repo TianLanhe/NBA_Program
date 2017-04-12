@@ -108,7 +108,7 @@ public class DataParserTest {
     Team team = dataParser.getTeam();
 
     Assert.assertEquals(team.getName(), "Toronto Raptors");
-    Assert.assertEquals(team.getAddr(), "TOR");
+    Assert.assertEquals(team.getAbbr(), "TOR");
     Assert.assertEquals(team.getBirth(), 1996);
     Assert.assertEquals(team.getAge(), 19);
     Assert.assertEquals(team.getChampNum(), 0);
@@ -121,7 +121,7 @@ public class DataParserTest {
     team = dataParser.getTeam();
 
     Assert.assertEquals(team.getName(), "Toronto Raptors");
-    Assert.assertEquals(team.getAddr(), "TOR");
+    Assert.assertEquals(team.getAbbr(), "TOR");
     Assert.assertEquals(team.getBirth(), 1996);
     Assert.assertEquals(team.getAge(), 19);
     Assert.assertEquals(team.getChampNum(), 0);
@@ -172,8 +172,8 @@ public class DataParserTest {
     dataParser.parseData(str_normal);
     CoachTeam coachTeam = dataParser.getCoachTeam();
 
-    Assert.assertEquals(coachTeam.getCoach(), "D. Casey");
-    Assert.assertEquals(coachTeam.getTeam(), "Toronto Raptors");
+    Assert.assertEquals(coachTeam.getCoachName(), "D. Casey");
+    Assert.assertEquals(coachTeam.getTeamName(), "Toronto Raptors");
     Assert.assertEquals(coachTeam.getStartYear(), 2013);
     Assert.assertEquals(coachTeam.getEndYear(), 2014);
 
@@ -182,8 +182,8 @@ public class DataParserTest {
     dataParser.parseData(str_other);
     coachTeam = dataParser.getCoachTeam();
 
-    Assert.assertEquals(coachTeam.getCoach(), "D. Casey");
-    Assert.assertEquals(coachTeam.getTeam(), "Toronto Raptors");
+    Assert.assertEquals(coachTeam.getCoachName(), "D. Casey");
+    Assert.assertEquals(coachTeam.getTeamName(), "Toronto Raptors");
     Assert.assertEquals(coachTeam.getStartYear(), 2013);
     Assert.assertEquals(coachTeam.getEndYear(), 2014);
 
@@ -231,8 +231,8 @@ public class DataParserTest {
     dataParser.parseData(str_normal);
     ArenaTeam arenaTeam = dataParser.getArenaTeam();
 
-    Assert.assertEquals(arenaTeam.getArena(), "AirCanadaCentre");
-    Assert.assertEquals(arenaTeam.getTeam(), "Toronto Raptors");
+    Assert.assertEquals(arenaTeam.getArenaName(), "AirCanadaCentre");
+    Assert.assertEquals(arenaTeam.getTeamName(), "Toronto Raptors");
     Assert.assertEquals(arenaTeam.getStartYear(), 1999);
     Assert.assertEquals(arenaTeam.getEndYear(), 2014);
 
@@ -241,8 +241,8 @@ public class DataParserTest {
     dataParser.parseData(str_other);
     arenaTeam = dataParser.getArenaTeam();
 
-    Assert.assertEquals(arenaTeam.getArena(), "AirCanadaCentre");
-    Assert.assertEquals(arenaTeam.getTeam(), "Toronto Raptors");
+    Assert.assertEquals(arenaTeam.getArenaName(), "AirCanadaCentre");
+    Assert.assertEquals(arenaTeam.getTeamName(), "Toronto Raptors");
     Assert.assertEquals(arenaTeam.getStartYear(), 1999);
     Assert.assertEquals(arenaTeam.getEndYear(), 2014);
 

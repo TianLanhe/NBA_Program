@@ -88,4 +88,9 @@ public class Season {
   public void setTeamAbbr(String teamAbbr) {
     this.teamAbbr = teamAbbr;
   }
+
+  // ”√”⁄≈≈–Ú
+  public String getPlayerBirthAndName() {
+    return playerName + playerBirth;
+  }
 }

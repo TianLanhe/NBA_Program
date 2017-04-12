@@ -59,8 +59,10 @@ public class DataLoadingControler {
       catalog.addLocation(location);
       catalog.addCoachTeam(coachTeam);
       catalog.addArenaTeam(arenaTeam);
+      
     }
 
+    catalog.setAssociations();
     return true;
   }
 }

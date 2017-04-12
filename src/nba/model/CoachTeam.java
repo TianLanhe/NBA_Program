@@ -21,7 +21,7 @@ public class CoachTeam {
   public boolean equals(Object obj) {
     if (obj != null && obj.getClass().equals(this.getClass())) {
       CoachTeam coachTeam = (CoachTeam) obj;
-      boolean flag = coachTeam.getCoach().equals(coachName) && coachTeam.getTeam().equals(teamName);
+      boolean flag = coachTeam.getCoachName().equals(coachName) && coachTeam.getTeamName().equals(teamName);
       flag = flag && isIntersect(coachTeam);
       return flag;
     }
@@ -65,19 +65,19 @@ public class CoachTeam {
     this.endYear = endYear;
   }
 
-  public String getCoach() {
+  public String getCoachName() {
     return coachName;
   }
 
-  public void setCoach(String coach) {
+  public void setCoachName(String coach) {
     this.coachName = coach;
   }
 
-  public String getTeam() {
+  public String getTeamName() {
     return teamName;
   }
 
-  public void setTeam(String team) {
+  public void setTeamName(String team) {
     this.teamName = team;
   }
 

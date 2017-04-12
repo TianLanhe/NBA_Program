@@ -21,7 +21,7 @@ public class ArenaTeam {
   public boolean equals(Object obj) {
     if (obj != null && obj.getClass().equals(this.getClass())) {
       ArenaTeam arenaTeam = (ArenaTeam) obj;
-      boolean flag = arenaTeam.getArena().equals(arenaName) && arenaTeam.getTeam().equals(teamName);
+      boolean flag = arenaTeam.getArenaName().equals(arenaName) && arenaTeam.getTeamName().equals(teamName);
       flag = flag && isIntersect(arenaTeam);
       return flag;
     }
@@ -50,19 +50,19 @@ public class ArenaTeam {
   }
 
 
-  public String getArena() {
+  public String getArenaName() {
     return arenaName;
   }
 
-  public void setArena(String arena) {
+  public void setArenaName(String arena) {
     this.arenaName = arena;
   }
 
-  public String getTeam() {
+  public String getTeamName() {
     return teamName;
   }
 
-  public void setTeam(String team) {
+  public void setTeamName(String team) {
     this.teamName = team;
   }
 

@@ -3,6 +3,8 @@ package nba.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import nba.association.AssociationManager;
+
 public class Catalog {
 
   private static Catalog catalog = null;
@@ -32,6 +34,17 @@ public class Catalog {
     return catalog;
   }
 
+  public void setAssociations() {
+    AssociationManager manager = new AssociationManager();
+    manager.setPlayerToSeasonAssociations(players, seasons);
+    manager.setTeamToSeasonAssociations(teams, seasons);
+    manager.setCoachToTeamAssociations(coachs, coachTeams);
+    manager.setTeamToCoachAssociations(teams, coachTeams);
+    manager.setArenaToTeamAssociations(arenas, arenaTeams);
+    manager.setTeamToArenaAssociations(teams, arenaTeams);
+    manager.setArenaToLocationAssociations(arenas, locations);
+  }
+
   public Player addPlayer(Player player) {
     if (player != null) {
       if (!players.contains(player))
@@ -43,12 +56,13 @@ public class Catalog {
   }
 
   public Season addSeason(Season season) {
-    if (season != null){
-      if(seasons.contains(season)){ //如果已经添加过了，则合并两条记录
+    if (season != null) {
+      if (seasons.contains(season)) { // 如果已经添加过了，则合并两条记录
         Season s = seasons.get(seasons.indexOf(season));
         s.setPoint(s.getPoint() + season.getPoint());
         s.setGameNum(s.getGameNum() + season.getGameNum());
-      }else{    //如果没添加过，则直接添加该记录
+        season = s;
+      } else { // 如果没添加过，则直接添加该记录
         seasons.add(season);
       }
     }
@@ -76,8 +90,8 @@ public class Catalog {
   }
 
   public CoachTeam addCoachTeam(CoachTeam coachTeam) {
-    if(coachTeam != null){
-      while(coachTeams.contains(coachTeam)){
+    if (coachTeam != null) {
+      while (coachTeams.contains(coachTeam)) {
         CoachTeam c = coachTeams.get(coachTeams.indexOf(coachTeam));
         coachTeams.remove(c);
         c.setStartYear(Math.min(c.getStartYear(), coachTeam.getStartYear()));
@@ -190,4 +204,5 @@ public class Catalog {
   public void setArenaTeams(List<ArenaTeam> arenaTeams) {
     this.arenaTeams = arenaTeams;
   }
+  
 }

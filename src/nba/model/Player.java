@@ -63,4 +63,9 @@ public class Player {
   public void setSeasons(List<Season> seasons) {
     this.seasons = seasons;
   }
+  
+  //ÓÃÓÚÅÅĞò
+  public String getBirthAndName(){
+    return name + birth_year;
+  }
 }

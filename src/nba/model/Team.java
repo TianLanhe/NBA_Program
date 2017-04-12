@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Team {
   private String name; // 球队名称
-  private String addreviate;// 球队简称
+  private String abbreviate;// 球队简称
   private int birth_year;// 球队诞生年份
   private int age;// 球队存活时间
   private int game_num;// 球队参加过的比赛场数
@@ -15,10 +15,10 @@ public class Team {
   private List<CoachTeam> coachTeams;
   private List<ArenaTeam> arenaTeams;
 
-  public Team(String name, String addreviate, int birth_year, int age, int game_num, int win_num,
+  public Team(String name, String abbreviate, int birth_year, int age, int game_num, int win_num,
       int champion_num) {
     this.name = name;
-    this.addreviate = addreviate;
+    this.abbreviate = abbreviate;
     this.birth_year = birth_year;
     this.age = age;
     this.game_num = game_num;
@@ -71,12 +71,12 @@ public class Team {
     return name;
   }
 
-  public void setAddr(String addr) {
-    addreviate = addr;
+  public void setAbbr(String abbr) {
+    abbreviate = abbr;
   }
 
-  public String getAddr() {
-    return addreviate;
+  public String getAbbr() {
+    return abbreviate;
   }
 
   public void setWinNum(int i) {
