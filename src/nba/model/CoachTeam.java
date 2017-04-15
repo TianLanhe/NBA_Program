@@ -21,7 +21,8 @@ public class CoachTeam {
   public boolean equals(Object obj) {
     if (obj != null && obj.getClass().equals(this.getClass())) {
       CoachTeam coachTeam = (CoachTeam) obj;
-      boolean flag = coachTeam.getCoachName().equals(coachName) && coachTeam.getTeamName().equals(teamName);
+      boolean flag =
+          coachTeam.getCoachName().equals(coachName) && coachTeam.getTeamName().equals(teamName);
       flag = flag && isIntersect(coachTeam);
       return flag;
     }
