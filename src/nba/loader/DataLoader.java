@@ -7,10 +7,10 @@ import java.io.IOException;
 
 public class DataLoader {
 
-  BufferedReader bufIn;
-  String[] fields;
-  int index;
-  int length;
+  private BufferedReader bufIn;
+  private String[] fields;
+  private int index;
+  private int length;
 
   public boolean loadFrom(File file) {
     if (!file.exists()) {
