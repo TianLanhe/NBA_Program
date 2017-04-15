@@ -7,7 +7,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-import r.R;
+import nba.r.R;
 
 import nba.controler.DataLoadingControler;
 import nba.loader.DataLoader;

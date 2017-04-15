@@ -7,8 +7,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
-import r.R;
-
+import nba.r.R;
 
 import nba.model.Catalog;
 import nba.model.Player;
@@ -29,22 +28,20 @@ public class ClickBtnListener implements ActionListener {
   public void actionPerformed(ActionEvent e) {
 
     if (btnAnalysis.isSelected() && btn != null) {
-//      Allplayer k = new Allplayer();
+      // Allplayer k = new Allplayer();
     } else if (btnDetail.isSelected() & btn != null) {
-      Catalog catalog =Catalog.getInstance();
+      Catalog catalog = Catalog.getInstance();
       List<Player> players = catalog.getPlayers();
       EachPlayer l = new EachPlayer(players);
     }
   }
 }
 
-//int min = Integet.parseInt(jtextfield.getText());
-//int max = Integet.parseInt(jtextfield2.getText());
-//for(int i=0;i<players.size();++i)
-//  if(players.get(i).getBirth>=min && players.get(i).getBirth<=max)
-//    new_list.add(players.get(i))
-    
-    
+// int min = Integet.parseInt(jtextfield.getText());
+// int max = Integet.parseInt(jtextfield2.getText());
+// for(int i=0;i<players.size();++i)
+// if(players.get(i).getBirth>=min && players.get(i).getBirth<=max)
+// new_list.add(players.get(i))
 
-    
+
 

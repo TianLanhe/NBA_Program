@@ -11,7 +11,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import r.R;
+import nba.r.R;
 
 import nba.listener.ClickBtnListener;
 

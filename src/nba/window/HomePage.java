@@ -8,7 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import r.R;
+import nba.r.R;
 
 import nba.listener.ExitActionListener;
 import nba.listener.OpenActionListener;

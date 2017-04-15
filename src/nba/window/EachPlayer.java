@@ -3,7 +3,7 @@ package nba.window;
 import java.awt.*;
 import javax.swing.*;
 
-import r.R;
+import nba.r.R;
 
 import nba.comparator.NBAComparator;
 import nba.model.Player;

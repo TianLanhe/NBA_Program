@@ -1,4 +1,4 @@
-package r;
+package nba.r;
 import java.util.HashMap;
 
 public class R {
