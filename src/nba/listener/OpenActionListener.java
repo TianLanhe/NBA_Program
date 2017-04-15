@@ -6,14 +6,14 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
+import r.R;
 
 import nba.controler.DataLoadingControler;
 import nba.loader.DataLoader;
 import nba.parser.DataParser;
 import nba.window.QueryWindow;
 
-import R.R;
 
 public class OpenActionListener implements ActionListener {
 
@@ -31,7 +31,7 @@ public class OpenActionListener implements ActionListener {
       DataLoadingControler dataLoadingControler = new DataLoadingControler(dataLoader, dataParser);
 
       File file = jfc.getSelectedFile();
-      dataLoadingControler.loadData(file.getAbsolutePath())
+      dataLoadingControler.loadData(file.getAbsolutePath());
         new QueryWindow();
 
       homePage.dispose();

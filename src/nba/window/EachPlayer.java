@@ -3,13 +3,14 @@ package nba.window;
 import java.awt.*;
 import javax.swing.*;
 
+import r.R;
+
 import nba.comparator.NBAComparator;
 import nba.model.Player;
 
 import java.util.Collections;
 import java.util.List;
 
-import R.R;
 
 public class EachPlayer extends AbstractPage {
 

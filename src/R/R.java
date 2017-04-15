@@ -1,4 +1,4 @@
-package R;
+package r;
 import java.util.HashMap;
 
 public class R {

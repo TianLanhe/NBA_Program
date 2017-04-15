@@ -7,12 +7,12 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
-import nba.comparator.NBAComparator;
+import r.R;
+
+
 import nba.model.Catalog;
 import nba.model.Player;
 import nba.window.EachPlayer;
-
-import R.R;
 
 public class ClickBtnListener implements ActionListener {
   private JRadioButton btnAnalysis, btnDetail;
