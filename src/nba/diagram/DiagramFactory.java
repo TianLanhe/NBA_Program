@@ -17,14 +17,14 @@ public class DiagramFactory {
         return pd;
     }
     
-    public static void main(String[] args) {
-        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
-        String[] fruits = { "apple", "banana", "lemon", "strawberry", "watermelon", "peer", "cherry" };
-        BarDiagram bd = DiagramFactory.createBarDiagram(dataset, fruits);
-        bd.draw("hello", "world");
-        LineDiagram ld = DiagramFactory.createLineDiagram(dataset, fruits);
-        ld.draw("hello", "world");
-        PieDiagram pd = DiagramFactory.createPieDiagram(dataset, fruits);
-        pd.draw();
-    }
+//    public static void main(String[] args) {
+//        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
+//        String[] fruits = { "apple", "banana", "lemon", "strawberry", "watermelon", "peer", "cherry" };
+//        BarDiagram bd = DiagramFactory.createBarDiagram(dataset, fruits);
+//        bd.draw("hello", "world");
+//        LineDiagram ld = DiagramFactory.createLineDiagram(dataset, fruits);
+//        ld.draw("hello", "world");
+//        PieDiagram pd = DiagramFactory.createPieDiagram(dataset, fruits);
+//        pd.draw();
+//    }
 }
