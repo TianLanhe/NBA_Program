@@ -32,8 +32,8 @@ public class OpenActionListener implements ActionListener {
 
       File file = jfc.getSelectedFile();
       dataLoadingControler.loadData(file.getAbsolutePath());
-        new QueryWindow();
-
+      new QueryWindow();
+      
       homePage.dispose();
     }
 

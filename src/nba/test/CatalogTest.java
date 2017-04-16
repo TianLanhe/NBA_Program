@@ -204,7 +204,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddAreaTest() {
+  public void CatalogAddArenaTest() {
     Arena arena = new Arena("arenaName");
     catalog.addArena(arena);
     Assert.assertEquals(1, catalog.getArenas().size());
@@ -219,7 +219,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddAreaTeamTest() {
+  public void CatalogAddArenaTeamTest() {
     ArenaTeam arenaTeam = new ArenaTeam(2003, 2010, "arenaName", "teamName");
     catalog.addArenaTeam(arenaTeam);
     Assert.assertEquals(1, catalog.getArenaTeams().size());

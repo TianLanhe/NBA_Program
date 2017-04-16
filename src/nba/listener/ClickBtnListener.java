@@ -37,11 +37,5 @@ public class ClickBtnListener implements ActionListener {
   }
 }
 
-// int min = Integet.parseInt(jtextfield.getText());
-// int max = Integet.parseInt(jtextfield2.getText());
-// for(int i=0;i<players.size();++i)
-// if(players.get(i).getBirth>=min && players.get(i).getBirth<=max)
-// new_list.add(players.get(i))
-
 
 

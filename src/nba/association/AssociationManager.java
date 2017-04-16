@@ -3,7 +3,6 @@ package nba.association;
 import java.util.Collections;
 import java.util.List;
 
-import nba.comparator.NBAComparator;
 import nba.model.Arena;
 import nba.model.ArenaTeam;
 import nba.model.Coach;
@@ -12,6 +11,7 @@ import nba.model.Location;
 import nba.model.Player;
 import nba.model.Season;
 import nba.model.Team;
+import nba.util.NBAComparator;
 
 public class AssociationManager {
 

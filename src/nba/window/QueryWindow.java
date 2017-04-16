@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import nba.r.R;
 
 import nba.listener.ClickBtnListener;
+import nba.listener.PlayerPointAnalysis;
 
 
 public class QueryWindow extends AbstractPage {
@@ -104,6 +105,7 @@ public class QueryWindow extends AbstractPage {
   @Override
   protected void addListener() {
     btnPlayer.addActionListener(new ClickBtnListener());
+    btnGym.addActionListener(new PlayerPointAnalysis());
   }
 
   @Override

@@ -4,8 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 import nba.r.R;
+import nba.util.NBAComparator;
 
-import nba.comparator.NBAComparator;
 import nba.model.Player;
 
 import java.util.Collections;

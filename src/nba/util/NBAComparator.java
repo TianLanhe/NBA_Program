@@ -1,4 +1,4 @@
-package nba.comparator;
+package nba.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,16 +26,16 @@ public class NBAComparator<T> implements Comparator<T> {
     Method method = null;
     try {
       method = c.getMethod(methodName);
-      
+
       Object obj0 = method.invoke(arg0);
       Object obj1 = method.invoke(arg1);
-      
+
       int ret;
       if (methodName.endsWith("Name") || methodName.endsWith("Abbr"))
         ret = ((String) obj0).compareTo((String) obj1);
       else
         ret = ((Integer) obj0).compareTo((Integer) obj1);
-      
+
       return flag == FROM_BIG ? -ret : ret;
     } catch (NoSuchMethodException e) {
       e.printStackTrace();

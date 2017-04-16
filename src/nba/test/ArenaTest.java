@@ -29,7 +29,7 @@ public class ArenaTest {
     Arena arena2 = new Arena();
     Assert.assertNotEquals(arena, arena2);
 
-    arena2 = new Arena("another_areaName");
+    arena2 = new Arena("another_arenaName");
     Assert.assertNotEquals(arena, arena2);
   }
 
