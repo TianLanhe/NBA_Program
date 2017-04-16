@@ -13,6 +13,7 @@ public class NBASearcher<T> {
   }
 
   public List<T> findAll(String methodName, Object target) {
+    if (list == null || list.size() == 0) return null;
     List<T> ret = new ArrayList<T>();
     Class<? extends Object> c = list.get(0).getClass();
     Method method = null;
@@ -35,6 +36,7 @@ public class NBASearcher<T> {
   }
 
   public T find(String methodName, Object target) {
+    if (list == null || list.size() == 0) return null;
     Class<? extends Object> c = list.get(0).getClass();
     Method method = null;
     try {
