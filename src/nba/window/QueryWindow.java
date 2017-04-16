@@ -15,7 +15,6 @@ import nba.r.R;
 
 import nba.listener.ClickBtnListener;
 
-
 public class QueryWindow extends AbstractPage {
 
   private static final long serialVersionUID = 1L;
@@ -97,7 +96,7 @@ public class QueryWindow extends AbstractPage {
     label = new JLabel(background);
     label.setBounds(0, 0, this.getWidth(), this.getHeight());// 把标签的大小位置设置为图片刚好填充整个面板
     add(label);
-    
+
     validate();
   }
 

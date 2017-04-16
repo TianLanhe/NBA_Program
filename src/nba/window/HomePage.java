@@ -57,7 +57,7 @@ public class HomePage extends AbstractPage {
   protected void initPage() {
     super.initPage();
     setTitle("NBA信息统计");
-    setSize(880, 610);
+    setSize(880, 600);
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
