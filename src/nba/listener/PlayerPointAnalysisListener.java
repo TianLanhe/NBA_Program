@@ -11,7 +11,7 @@ import nba.model.Catalog;
 import nba.model.Player;
 import nba.model.Season;
 
-public class PlayerPointAnalysis implements ActionListener {
+public class PlayerPointAnalysisListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent arg0) {

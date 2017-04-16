@@ -10,7 +10,7 @@ import nba.model.Catalog;
 import nba.model.Season;
 import nba.util.NBAComparator;
 
-public class PlayerSeasonAnalysis implements ActionListener {
+public class PlayerSeasonAnalysisListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent arg0) {

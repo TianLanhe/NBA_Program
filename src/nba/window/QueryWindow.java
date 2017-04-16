@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import nba.r.R;
 
 import nba.listener.ClickBtnListener;
-import nba.listener.PlayerPointAnalysis;
+import nba.listener.PlayerGameAnalysisListener;
 
 
 public class QueryWindow extends AbstractPage {
@@ -98,14 +98,14 @@ public class QueryWindow extends AbstractPage {
     label = new JLabel(background);
     label.setBounds(0, 0, this.getWidth(), this.getHeight());// 把标签的大小位置设置为图片刚好填充整个面板
     add(label);
-    
+
     validate();
   }
 
   @Override
   protected void addListener() {
     btnPlayer.addActionListener(new ClickBtnListener());
-    btnGym.addActionListener(new PlayerPointAnalysis());
+    btnGym.addActionListener(new PlayerGameAnalysisListener());
   }
 
   @Override
