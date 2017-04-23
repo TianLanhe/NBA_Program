@@ -1,5 +1,8 @@
 package nba.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nba.model.Arena;
 import nba.model.ArenaTeam;
 import nba.model.Coach;
@@ -21,6 +24,9 @@ public class DataParser {
   private ArenaTeam arenaTeam;
   private Location location;
   private Season season;
+
+  private List<Coach> coachList = new ArrayList<Coach>();
+  private List<CoachTeam> coachTeamList = new ArrayList<CoachTeam>();
 
   public boolean parseData(String string) {
     if (countComma(string) != 23) return false;
@@ -131,6 +137,18 @@ public class DataParser {
       start = Integer.parseInt(start_end.substring(0, start_end.indexOf("-")));
       end = Integer.parseInt(start_end.substring(start_end.indexOf("-") + 1));
 
+      // 如果有多个coach对象，则将多余的储存起来，待以后再返回
+      String[] coachs = coachName.split("  ");
+      if (coachs.length > 1) {
+        coachName = coachs[0];
+        for (int i = 1; i < coachs.length; ++i) {
+          CoachTeam tempCoachTeam = new CoachTeam(start, end, coachs[i], teamName);
+          if (!coachTeamList.contains(tempCoachTeam)) {
+            coachTeamList.add(tempCoachTeam);
+          }
+        }
+      }
+
       coachTeam = new CoachTeam(start, end, coachName, teamName);
     }
   }
@@ -149,6 +167,17 @@ public class DataParser {
     if (coachName.isEmpty()) {
       coach = null;
     } else {
+      // 如果有多个coach对象，则将多余的储存起来，待以后再返回
+      String[] coachs = coachName.split("  ");
+      if (coachs.length > 1) {
+        coachName = coachs[0];
+        for (int i = 1; i < coachs.length; ++i) {
+          Coach tempCoach = new Coach(coachs[i]);
+          if (!coachList.contains(tempCoach)) {
+            coachList.add(tempCoach);
+          }
+        }
+      }
       coach = new Coach(coachName);
     }
   }
@@ -201,6 +230,10 @@ public class DataParser {
   }
 
   public Coach getCoach() {
+    if (coach == null && coachList.size() != 0) {
+      coach = coachList.get(0);
+      coachList.remove(0);
+    }
     return coach;
   }
 
@@ -209,6 +242,10 @@ public class DataParser {
   }
 
   public CoachTeam getCoachTeam() {
+    if (coachTeam == null && coachTeamList.size() != 0) {
+      coachTeam = coachTeamList.get(0);
+      coachTeamList.remove(0);
+    }
     return coachTeam;
   }
 
@@ -222,5 +259,18 @@ public class DataParser {
 
   public Season getSeason() {
     return season;
+  }
+
+  public void clear() {
+    player = null;
+    season = null;
+    team = null;
+    coach = null;
+    coachTeam = null;
+    arena = null;
+    arenaTeam = null;
+    location = null;
+    coachList.clear();
+    coachTeamList.clear();
   }
 }

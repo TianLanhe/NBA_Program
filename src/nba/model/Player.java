@@ -23,6 +23,20 @@ public class Player {
     if (season != null && !seasons.contains(season)) seasons.add(season);
   }
 
+  public int getPoints() {
+    int ret = 0;
+    for (Season s : seasons)
+      ret += s.getPoint();
+    return ret;
+  }
+
+  public int getGameNum() {
+    int ret = 0;
+    for (Season s : seasons)
+      ret += s.getGameNum();
+    return ret;
+  }
+
   @Override
   public boolean equals(Object obj) {
     if (obj != null && obj.getClass().equals(this.getClass())) {
@@ -38,6 +52,11 @@ public class Player {
     result = result * 31 + name.hashCode();
     result = result * 31 + birth_year;
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return getName();
   }
 
   public void setBirth(int year) {
