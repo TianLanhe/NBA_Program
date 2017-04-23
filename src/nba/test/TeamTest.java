@@ -19,7 +19,7 @@ public class TeamTest {
 
   @Test
   // Team是否相等取决于球队名称与球队诞生年份，而与球队简称、球队参加赛季、胜负次数、冠军次数无关
-  public void TeamEqualTest() {
+  public void teamEqualTest() {
     Assert.assertEquals(team, team);
 
     Team team2 = new Team("New York Knicks", "NYK", 1947, 68, 5235, 2617, 2);
@@ -42,7 +42,7 @@ public class TeamTest {
   }
 
   @Test
-  public void TeamNotEqualTest() {
+  public void teamNotEqualTest() {
     Team team2 = new Team("another_teamName", "NYK", 1947, 68, 5235, 2617, 2);
     Assert.assertNotEquals(team, team2);
 
@@ -51,7 +51,7 @@ public class TeamTest {
   }
 
   @Test
-  public void TeamAddSeasonTest() {
+  public void teamAddSeasonTest() {
     Season season = new Season();
     team.addSeason(season);
     Assert.assertEquals(1, team.getSeasons().size());
@@ -66,7 +66,7 @@ public class TeamTest {
   }
 
   @Test
-  public void TeamAddCoachTeamTest() {
+  public void teamAddCoachTeamTest() {
     CoachTeam coachTeam = new CoachTeam();
     team.addCoachTeam(coachTeam);
     Assert.assertEquals(1, team.getCoachTeams().size());
@@ -81,7 +81,7 @@ public class TeamTest {
   }
 
   @Test
-  public void TeamAddArenaTeamTest() {
+  public void teamAddArenaTeamTest() {
     ArenaTeam arenaTeam = new ArenaTeam();
     team.addArenaTeam(arenaTeam);
     Assert.assertEquals(1, team.getArenaTeams().size());

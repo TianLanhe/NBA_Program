@@ -12,7 +12,7 @@ public class Player {
   public Player(String name, int birth_year) {
     this.name = name;
     this.birth_year = birth_year;
-    seasons = new ArrayList<Season>();//一个球员说具有的赛季数不多
+    seasons = new ArrayList<Season>();// 一个球员说具有的赛季数不多
   }
 
   public Player() {
@@ -63,9 +63,9 @@ public class Player {
   public void setSeasons(List<Season> seasons) {
     this.seasons = seasons;
   }
-  
-  //用于排序
-  public String getBirthAndName(){
+
+  // 用于排序
+  public String getBirthAndName() {
     return name + birth_year;
   }
 }

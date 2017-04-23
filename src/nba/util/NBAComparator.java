@@ -16,25 +16,22 @@ public class NBAComparator<T> implements Comparator<T> {
     this.methodName = methodName;
   }
 
-  public NBAComparator(String field) {
-    this(field, FROM_SMALL);
+  public NBAComparator(String methodName) {
+    this(methodName, FROM_SMALL);
   }
 
   @Override
   public int compare(T arg0, T arg1) {
     Class<? extends Object> c = arg0.getClass();
-    Method method = null;
     try {
-      method = c.getMethod(methodName);
+      Method method = c.getMethod(methodName);
 
       Object obj0 = method.invoke(arg0);
       Object obj1 = method.invoke(arg1);
 
-      int ret;
-      if (methodName.endsWith("Name") || methodName.endsWith("Abbr"))
-        ret = ((String) obj0).compareTo((String) obj1);
-      else
-        ret = ((Integer) obj0).compareTo((Integer) obj1);
+      Method m = obj0.getClass().getMethod("compareTo", obj1.getClass());
+      int ret = 0;
+      ret = (int) m.invoke(obj0, obj1);
 
       return flag == FROM_BIG ? -ret : ret;
     } catch (NoSuchMethodException e) {

@@ -5,22 +5,21 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NBASearcher<T> {
-  private List<T> list;
+public class NBASearcher {
 
-  public NBASearcher(List<T> list) {
-    this.list = list;
-  }
-
-  public List<T> findAll(String methodName, Object target) {
-    if (list == null || list.size() == 0) return null;
+  public static <T> List<T> findAll(List<T> list, String methodName, Object target) {
+    if (list == null || list.size() == 0) {
+      return null;
+    }
     List<T> ret = new ArrayList<T>();
     Class<? extends Object> c = list.get(0).getClass();
-    Method method = null;
     try {
+      Method method = null;
       method = c.getMethod(methodName);
       for (T t : list)
-        if (method.invoke(t).equals(target)) ret.add(t);
+        if (method.invoke(t).equals(target)) {
+          ret.add(t);
+        }
     } catch (NoSuchMethodException e) {
       e.printStackTrace();
     } catch (SecurityException e) {
@@ -35,14 +34,18 @@ public class NBASearcher<T> {
     return ret;
   }
 
-  public T find(String methodName, Object target) {
-    if (list == null || list.size() == 0) return null;
+  public static <T> T find(List<T> list, String methodName, Object target) {
+    if (list == null || list.size() == 0) {
+      return null;
+    }
     Class<? extends Object> c = list.get(0).getClass();
-    Method method = null;
     try {
+      Method method = null;
       method = c.getMethod(methodName);
       for (T t : list)
-        if (method.invoke(t).equals(target)) return t;
+        if (method.invoke(t).equals(target)) {
+          return t;
+        }
     } catch (NoSuchMethodException e) {
       e.printStackTrace();
     } catch (SecurityException e) {

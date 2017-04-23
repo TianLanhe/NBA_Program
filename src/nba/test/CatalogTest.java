@@ -23,7 +23,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddPlayerTest() {
+  public void catalogAddPlayerTest() {
     Player player = new Player("playerName", 1996);
     catalog.addPlayer(player);
     Assert.assertEquals(1, catalog.getPlayers().size());
@@ -45,7 +45,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddSeasonTest() {
+  public void catalogAddSeasonTest() {
     Season season = new Season("playerName", "teamAbbr", 1996, 100, 50, 2014);
     catalog.addSeason(season);
     Assert.assertEquals(1, catalog.getSeasons().size());
@@ -76,7 +76,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddTeamTest() {
+  public void catalogAddTeamTest() {
     Team team = new Team("New York Knicks", "NYK", 1947, 68, 5235, 2617, 2);
     catalog.addTeam(team);
     Assert.assertEquals(1, catalog.getTeams().size());
@@ -100,7 +100,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddCoachTest() {
+  public void catalogAddCoachTest() {
     Coach coach = new Coach("coachName");
     catalog.addCoach(coach);
     Assert.assertEquals(1, catalog.getCoachs().size());
@@ -115,7 +115,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddCoachTeamTest() {
+  public void catalogAddCoachTeamTest() {
     CoachTeam coachTeam = new CoachTeam(2003, 2010, "coachName", "teamName");
     catalog.addCoachTeam(coachTeam);
     Assert.assertEquals(1, catalog.getCoachTeams().size());
@@ -204,7 +204,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddArenaTest() {
+  public void catalogAddArenaTest() {
     Arena arena = new Arena("arenaName");
     catalog.addArena(arena);
     Assert.assertEquals(1, catalog.getArenas().size());
@@ -219,7 +219,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddArenaTeamTest() {
+  public void catalogAddArenaTeamTest() {
     ArenaTeam arenaTeam = new ArenaTeam(2003, 2010, "arenaName", "teamName");
     catalog.addArenaTeam(arenaTeam);
     Assert.assertEquals(1, catalog.getArenaTeams().size());
@@ -308,7 +308,7 @@ public class CatalogTest {
   }
 
   @Test
-  public void CatalogAddLocationTest() {
+  public void catalogAddLocationTest() {
     Location location = new Location(2003, 2010, "locationName", "arenaName", 19500);
     catalog.addLocation(location);
     Assert.assertEquals(1, catalog.getLocations().size());

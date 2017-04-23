@@ -16,7 +16,7 @@ public class CoachTest {
   }
 
   @Test
-  public void CoachEqualTest() {
+  public void coachEqualTest() {
     Assert.assertEquals(coach, coach);
 
     Coach coach2 = new Coach("D. Casey");
@@ -24,7 +24,7 @@ public class CoachTest {
   }
 
   @Test
-  public void CoachNotEqualTest() {
+  public void coachNotEqualTest() {
     Coach coach2 = new Coach("D. Casey ");
     Assert.assertNotEquals(coach, coach2);
 
@@ -33,7 +33,7 @@ public class CoachTest {
   }
 
   @Test
-  public void CoachAddCoachTeamTest() {
+  public void coachAddCoachTeamTest() {
     CoachTeam coachTeam = new CoachTeam();
     coach.addCoachTeam(coachTeam);
     Assert.assertEquals(1, coach.getCoachTeams().size());

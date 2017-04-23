@@ -16,7 +16,7 @@ public class ArenaTeamTest {
 
   @Test
   // ArenaTeam相等的条件：球队名称相同、球场名称相同、年份区间有交集
-  public void ArenaTeamEqualTest() {
+  public void arenaTeamEqualTest() {
     Assert.assertEquals(arenaTeam, arenaTeam);
 
     ArenaTeam arenaTeam2 = new ArenaTeam(1967, 1971, "CowPalace", "Golden State Warriors");
@@ -42,7 +42,7 @@ public class ArenaTeamTest {
   }
 
   @Test
-  public void ArenaTeamNotEqualTest() {
+  public void arenaTeamNotEqualTest() {
     ArenaTeam arenaTeam2 = new ArenaTeam();
     Assert.assertNotEquals(arenaTeam, arenaTeam2);
 
