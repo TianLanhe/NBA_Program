@@ -19,7 +19,7 @@ public class OpenActionListener implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     JFileChooser jfc = new JFileChooser();
     jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    
+
     int state = jfc.showOpenDialog(null);
     if (state == JFileChooser.APPROVE_OPTION) {
       DataLoader dataLoader = new DataLoader();

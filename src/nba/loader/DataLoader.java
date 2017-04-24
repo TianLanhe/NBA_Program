@@ -25,6 +25,8 @@ public class DataLoader {
       index = 0;
     } catch (IOException e) {
       return false;
+    } catch(NumberFormatException e){
+      return false;
     }
     return true;
   }
