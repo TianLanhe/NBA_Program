@@ -31,7 +31,7 @@ public class NBAComparator<T> implements Comparator<T> {
 
       Method m = obj0.getClass().getMethod("compareTo", obj1.getClass());
       int ret = 0;
-      ret = (int) m.invoke(obj0, obj1);
+      ret = ((Integer) m.invoke(obj0, obj1)).intValue();
 
       return flag == FROM_BIG ? -ret : ret;
     } catch (NoSuchMethodException e) {
