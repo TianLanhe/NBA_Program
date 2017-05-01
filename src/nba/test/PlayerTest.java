@@ -18,7 +18,7 @@ public class PlayerTest {
 
   @Test
   // 当且仅当两个球员的名字和出生年份相同才认为两者相等
-  public void PlayerEqualTest() {
+  public void playerEqualTest() {
     Assert.assertEquals(player1, player1);
 
     Player player2 = new Player("Name1", 1996);
@@ -26,7 +26,7 @@ public class PlayerTest {
   }
 
   @Test
-  public void PlayerNotEqualTest() {
+  public void playerNotEqualTest() {
     Player player2 = new Player("Name1", 1995);
     Assert.assertNotEquals(player1, player2);
 
@@ -38,7 +38,7 @@ public class PlayerTest {
   }
 
   @Test
-  public void PlayerAddSeasonTest() {
+  public void playerAddSeasonTest() {
     player1.addSeason(new Season());
     Assert.assertEquals(player1.getSeasons().size(), 1);
 

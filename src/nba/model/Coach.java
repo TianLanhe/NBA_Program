@@ -35,6 +35,11 @@ public class Coach {
     result = result * 31 + name.hashCode();
     return result;
   }
+  
+  @Override
+  public String toString(){
+    return getName();
+  }
 
   public String getName() {
     return name;

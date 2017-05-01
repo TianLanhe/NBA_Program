@@ -1,6 +1,5 @@
 package nba.association;
 
-import java.util.Collections;
 import java.util.List;
 
 import nba.model.Arena;
@@ -17,10 +16,10 @@ public class AssociationManager {
 
   public void setPlayerToSeasonAssociations(List<Player> players, List<Season> seasons) {
     NBAComparator<Player> playerComparator = new NBAComparator<Player>("getBirthAndName");
-    Collections.sort(players, playerComparator);
+    players.sort(playerComparator);
 
     NBAComparator<Season> seasonComparator = new NBAComparator<Season>("getPlayerBirthAndName");
-    Collections.sort(seasons, seasonComparator);
+    seasons.sort(seasonComparator);
 
     int playersSize = players.size();
     int seasonsSize = seasons.size();
@@ -42,10 +41,10 @@ public class AssociationManager {
 
   public void setTeamToSeasonAssociations(List<Team> teams, List<Season> seasons) {
     NBAComparator<Team> teamComparator = new NBAComparator<Team>("getAbbr");
-    Collections.sort(teams, teamComparator);
+    teams.sort(teamComparator);
 
     NBAComparator<Season> seasonComparator = new NBAComparator<Season>("getTeamAbbr");
-    Collections.sort(seasons, seasonComparator);
+    seasons.sort(seasonComparator);
 
     int teamsSize = teams.size();
     int seasonsSize = seasons.size();
@@ -65,10 +64,10 @@ public class AssociationManager {
 
   public void setCoachToTeamAssociations(List<Coach> coachs, List<CoachTeam> coachTeams) {
     NBAComparator<Coach> coachComparator = new NBAComparator<Coach>("getName");
-    Collections.sort(coachs, coachComparator);
+    coachs.sort(coachComparator);
 
     NBAComparator<CoachTeam> coachTeamComparator = new NBAComparator<CoachTeam>("getCoachName");
-    Collections.sort(coachTeams, coachTeamComparator);
+    coachTeams.sort(coachTeamComparator);
 
     int coachsSize = coachs.size();
     int coachTeamsSize = coachTeams.size();
@@ -89,10 +88,10 @@ public class AssociationManager {
 
   public void setTeamToCoachAssociations(List<Team> teams, List<CoachTeam> coachTeams) {
     NBAComparator<Team> teamComparator = new NBAComparator<Team>("getName");
-    Collections.sort(teams, teamComparator);
+    teams.sort(teamComparator);
 
     NBAComparator<CoachTeam> seasonComparator = new NBAComparator<CoachTeam>("getTeamName");
-    Collections.sort(coachTeams, seasonComparator);
+    coachTeams.sort(seasonComparator);
 
     int teamsSize = teams.size();
     int coachTeamsSize = coachTeams.size();
@@ -113,10 +112,10 @@ public class AssociationManager {
 
   public void setArenaToLocationAssociations(List<Arena> arenas, List<Location> locations) {
     NBAComparator<Arena> arenaComparator = new NBAComparator<Arena>("getName");
-    Collections.sort(arenas, arenaComparator);
+    arenas.sort(arenaComparator);
 
     NBAComparator<Location> locationComparator = new NBAComparator<Location>("getArenaName");
-    Collections.sort(locations, locationComparator);
+    locations.sort(locationComparator);
 
     int arenasSize = arenas.size();
     int locationsSize = locations.size();
@@ -137,10 +136,10 @@ public class AssociationManager {
 
   public void setArenaToTeamAssociations(List<Arena> arenas, List<ArenaTeam> arenaTeams) {
     NBAComparator<Arena> arenaComparator = new NBAComparator<Arena>("getName");
-    Collections.sort(arenas, arenaComparator);
+    arenas.sort(arenaComparator);
 
     NBAComparator<ArenaTeam> arenaTeamComparator = new NBAComparator<ArenaTeam>("getArenaName");
-    Collections.sort(arenaTeams, arenaTeamComparator);
+    arenaTeams.sort(arenaTeamComparator);
 
     int arenasSize = arenas.size();
     int arenaTeamsSize = arenaTeams.size();
@@ -161,10 +160,10 @@ public class AssociationManager {
 
   public void setTeamToArenaAssociations(List<Team> teams, List<ArenaTeam> arenaTeams) {
     NBAComparator<Team> teamComparator = new NBAComparator<Team>("getName");
-    Collections.sort(teams, teamComparator);
+    teams.sort(teamComparator);
 
     NBAComparator<ArenaTeam> arenaTeamComparator = new NBAComparator<ArenaTeam>("getTeamName");
-    Collections.sort(arenaTeams, arenaTeamComparator);
+    arenaTeams.sort(arenaTeamComparator);
 
     int teamsSize = teams.size();
     int arenaTeamsSize = arenaTeams.size();

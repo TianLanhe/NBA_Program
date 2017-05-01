@@ -16,7 +16,7 @@ public class CoachTeamTest {
 
   @Test
   // CoachTeam相等的条件：球队名称相同、教练名称相同、年份区间有交集
-  public void CoachTeamEqualTest() {
+  public void coachTeamEqualTest() {
     Assert.assertEquals(coachTeam, coachTeam);
 
     CoachTeam coachTeam2 = new CoachTeam(2000, 2014, "D. Casey", "Toronto Raptors");
@@ -42,7 +42,7 @@ public class CoachTeamTest {
   }
 
   @Test
-  public void CoachTeamNotEqualTest() {
+  public void coachTeamNotEqualTest() {
     CoachTeam coachTeam2 = new CoachTeam();
     Assert.assertNotEquals(coachTeam, coachTeam2);
 

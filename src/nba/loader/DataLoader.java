@@ -9,8 +9,8 @@ public class DataLoader {
 
   private BufferedReader bufIn;
   private String[] fields;
-  private int index;
-  private int length;
+  private int index = 0;
+  private int length = 0;
 
   public boolean loadFrom(File file) {
     if (!file.exists()) {
@@ -24,6 +24,8 @@ public class DataLoader {
 
       index = 0;
     } catch (IOException e) {
+      return false;
+    } catch (NumberFormatException e) {
       return false;
     }
     return true;
@@ -52,11 +54,13 @@ public class DataLoader {
   }
 
   public String next() {
-    ++index;
-    try {
-      return bufIn.readLine();
-    } catch (IOException e) {
-      e.printStackTrace();
+    if (index != length) {
+      ++index;
+      try {
+        return bufIn.readLine();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
     return null;
   }

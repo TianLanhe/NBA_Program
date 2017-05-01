@@ -1,65 +1,104 @@
 package nba.window;
 
-import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.TableRowSorter;
 
 import nba.r.R;
-import nba.listener.QueryListener;
+import nba.listener.PlayerDetailListener;
+import nba.listener.PlayerMouseListener;
 import nba.model.Catalog;
+import nba.model.NBATableModel;
 import nba.model.Player;
 
 import java.util.List;
 
 public class EachPlayer extends AbstractPage {
-
   private static final long serialVersionUID = 1L;
 
   private JTextField textPlayer;// 输入搜索内容
-  private JButton btnPlayerEnsure;// "确定搜索"按钮
+  private JButton btnEnsure;// "确定搜索"按钮
   private List<Player> players;
+  private JTextField playerNameTx;
+  private JTextField playerBirthTx;
+  private JList<Object> playerList;
+  private JTable playerTable;
 
-  public EachPlayer(List<Player> players) {
-    super();
+  @Override
+  protected void initPage() {
+    super.initPage();
     setTitle("球员详细信息");
-    setSize(880, 610);
-    this.players = players;
+    setSize(880, 610);// TODO
+
+    setLayout(null);
   }
 
   protected void init() {
-    setLayout(new FlowLayout());
+    JLabel searchLabel = new JLabel("搜索：");
+    searchLabel.setBounds(20, 20, 50, 50);
+    add(searchLabel);
 
-    add(new JLabel("搜索："));
     textPlayer = new JTextField(58);
+    textPlayer.setBounds(60, 35, 655, 25);
     add(textPlayer);
 
-    btnPlayerEnsure = new JButton("确定");
-    add(btnPlayerEnsure);
+    btnEnsure = new JButton("确定");
+    btnEnsure.setBounds(745, 33, 65, 26);
+    getRootPane().setDefaultButton(btnEnsure);
+    add(btnEnsure);
 
+    addPlayerJlist();// 添加球员名单
+
+    JLabel name = new JLabel("球 员 名 字 ： ");
+    name.setBounds(380, 85, 90, 50);
+    add(name);
+
+    playerNameTx = new JTextField();
+    playerNameTx.setEditable(false);
+    playerNameTx.setBounds(460, 98, 150, 25);
+    add(playerNameTx);
+
+    JLabel birth = new JLabel("出 生 年 份 ： ");
+    birth.setBounds(380, 135, 90, 50);
+    add(birth);
+
+    playerBirthTx = new JTextField();
+    playerBirthTx.setEditable(false);
+    playerBirthTx.setBounds(460, 150, 150, 25);
+    add(playerBirthTx);
+
+    JLabel gameInformation = new JLabel("参 赛 信 息 ： ");
+    gameInformation.setBounds(380, 185, 90, 50);
+    add(gameInformation);
+
+    String[] columnNames = {"赛季", "参赛场次", "得分", "所属球队缩写"};
+    NBATableModel model = new NBATableModel(columnNames);
+    playerTable = new JTable(model);
+    playerTable.setRowSorter(new TableRowSorter<NBATableModel>(model));
+    JScrollPane JSP = new JScrollPane(playerTable);
+    JSP.setBounds(460, 200, 360, 300);
+    add(JSP);
+  }
+
+  public void addPlayerJlist() {
     players = Catalog.getInstance().getPlayers();
-    String[][] name = new String[players.size() / 8 + 1][8];
-    for (int i = 0; i < name.length; ++i) {
-      for (int j = 0; j < name[0].length; ++j) {
-        if (i * 8 + j == players.size()) break;
-        name[i][j] = players.get(i * 8 + j).getName();
-      }
-    }
-    String[] title = {"A", "B", "C", "D", "E", "F", "G", "H"};
-    JTable initTable = new JTable(name, title);
-    initTable.setPreferredScrollableViewportSize(new Dimension(750, 500));
-    initTable.setRowHeight(30);
 
-    add(new JScrollPane(initTable));
+    playerList = new JList<Object>(players.toArray());
+    JScrollPane JScrollPane = new JScrollPane(playerList);
+    JScrollPane.setBounds(60, 85, 220, 420);
+    add(JScrollPane);
   }
 
-
-
+  @Override
   protected void addListener() {
-    btnPlayerEnsure.addActionListener(new QueryListener());
+    btnEnsure.addActionListener(new PlayerDetailListener());
+    playerList.addMouseListener(new PlayerMouseListener());
   }
 
-
+  @Override
   protected void regitstComponent() {
     R.getInstance().registObject("textPlayer", textPlayer);
+    R.getInstance().registObject("playerNameTx", playerNameTx);
+    R.getInstance().registObject("playerBirthTx", playerBirthTx);
+    R.getInstance().registObject("playerTable", playerTable);
   }
-
 }

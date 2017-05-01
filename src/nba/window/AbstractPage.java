@@ -5,8 +5,7 @@ import javax.swing.*;
 public abstract class AbstractPage extends JFrame {
   private static final long serialVersionUID = 1L;
 
-  public AbstractPage() {
-    super();
+  public final void run() {
     initPage(); // 对窗口的初始化操作
     init(); // 初始化界面
     regitstComponent(); // 注册组件

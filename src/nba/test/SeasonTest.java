@@ -16,7 +16,7 @@ public class SeasonTest {
 
   @Test
   // Season是否相等取决于球员名字、球员出生年份、球队名称、赛季年份，而与得分、场次无关
-  public void SeasonEqualTest() {
+  public void seasonEqualTest() {
     Assert.assertEquals(season, season);
 
     Season season2 = new Season("playerName", "teamName", 1996, 100, 10, 2013);
@@ -30,7 +30,7 @@ public class SeasonTest {
   }
 
   @Test
-  public void SeasonNotEqualTest() {
+  public void seasonNotEqualTest() {
     Season season2 = new Season();
     Assert.assertNotEquals(season, season2);
 

@@ -12,7 +12,7 @@ public class Player {
   public Player(String name, int birth_year) {
     this.name = name;
     this.birth_year = birth_year;
-    seasons = new ArrayList<Season>();//一个球员说具有的赛季数不多
+    seasons = new ArrayList<Season>();// 一个球员说具有的赛季数不多
   }
 
   public Player() {
@@ -21,6 +21,20 @@ public class Player {
 
   public void addSeason(Season season) {
     if (season != null && !seasons.contains(season)) seasons.add(season);
+  }
+
+  public int getPoints() {
+    int ret = 0;
+    for (Season s : seasons)
+      ret += s.getPoint();
+    return ret;
+  }
+
+  public int getGameNum() {
+    int ret = 0;
+    for (Season s : seasons)
+      ret += s.getGameNum();
+    return ret;
   }
 
   @Override
@@ -38,6 +52,11 @@ public class Player {
     result = result * 31 + name.hashCode();
     result = result * 31 + birth_year;
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return getName();
   }
 
   public void setBirth(int year) {
@@ -63,9 +82,9 @@ public class Player {
   public void setSeasons(List<Season> seasons) {
     this.seasons = seasons;
   }
-  
-  //用于排序
-  public String getBirthAndName(){
+
+  // 用于排序
+  public String getBirthAndName() {
     return name + birth_year;
   }
 }

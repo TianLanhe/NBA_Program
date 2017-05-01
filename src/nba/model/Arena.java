@@ -34,6 +34,11 @@ public class Arena {
     }
     return false;
   }
+  
+  @Override
+  public String toString(){
+    return getName();
+  }
 
   @Override
   public int hashCode() {

@@ -16,7 +16,7 @@ public class LocationTest {
 
   @Test
   // 地点相等的条件：球场名称相同、地点名称相同、容量相同、年份区间有交集
-  public void LocationEqualTest() {
+  public void locationEqualTest() {
     Assert.assertEquals(location, location);
 
     Location loaction2 = new Location(1999, 2014, "TorontoON", "AirCanadaCentre", 19500);
@@ -42,7 +42,7 @@ public class LocationTest {
   }
 
   @Test
-  public void LocationNotEqualTest() {
+  public void locationNotEqualTest() {
     Location loaction2 = new Location();
     Assert.assertNotEquals(location, loaction2);
 

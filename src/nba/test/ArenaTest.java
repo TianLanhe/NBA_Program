@@ -17,7 +17,7 @@ public class ArenaTest {
   }
 
   @Test
-  public void ArenaEqualTest() {
+  public void arenaEqualTest() {
     Assert.assertEquals(arena, arena);
 
     Arena arena2 = new Arena("AirCanadaCentre");
@@ -25,7 +25,7 @@ public class ArenaTest {
   }
 
   @Test
-  public void ArenaNotEqualTest() {
+  public void arenaNotEqualTest() {
     Arena arena2 = new Arena();
     Assert.assertNotEquals(arena, arena2);
 
@@ -34,7 +34,7 @@ public class ArenaTest {
   }
 
   @Test
-  public void ArenaAddLocationTest() {
+  public void arenaAddLocationTest() {
     Location location = new Location();
     arena.addLocation(location);
     Assert.assertEquals(1, arena.getLocations().size());
@@ -49,7 +49,7 @@ public class ArenaTest {
   }
 
   @Test
-  public void ArenaAddArenaTeamTest() {
+  public void arenaAddArenaTeamTest() {
     ArenaTeam arenaTeam = new ArenaTeam();
     arena.addArenaTeam(arenaTeam);
     Assert.assertEquals(1, arena.getArenaTeams().size());

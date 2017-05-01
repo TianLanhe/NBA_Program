@@ -139,8 +139,10 @@ public class DataParserTest {
   }
 
   @Test
-  // 要求传入[11]一个字段
+  // 要求传入[11]一个字段，有可能有多个Coach，多次返回
   public void parseCoachTest() {
+    dataParser.clear();
+
     // 正常情况
     dataParser.parseData(str_normal);
     Coach coach = dataParser.getCoach();
@@ -148,7 +150,7 @@ public class DataParserTest {
     Assert.assertEquals(coach.getName(), "D. Casey");
 
     // 可选情况
-    String str_other = ",,,,,,,,,,D. Casey ,,,,,,,,,,,,";
+    String str_other = ",,,,,,,,,,,D. Casey ,,,,,,,,,,,,";
     dataParser.parseData(str_other);
     coach = dataParser.getCoach();
 
@@ -161,13 +163,32 @@ public class DataParserTest {
             + "onto Raptors,1999-2014,AirCanadaCentre,TorontoON,19500";
     dataParser.parseData(str_exception);
     coach = dataParser.getCoach();
+    Assert.assertEquals(coach, null);
 
+    // 多个Coach对象的情况
+    String str_muti = ",,,,,,,,,,,M. Brown  B. Bickerstaff  M. D'Antoni ,,,,,,,,,,,,";
+    dataParser.parseData(str_muti);
+    coach = dataParser.getCoach();
+    Assert.assertEquals(coach.getName(), "M. Brown");
+
+    dataParser.parseData(str_exception);
+    coach = dataParser.getCoach();
+    Assert.assertEquals(coach.getName(), "B. Bickerstaff");
+
+    dataParser.parseData(str_exception);
+    coach = dataParser.getCoach();
+    Assert.assertEquals(coach.getName(), "M. D'Antoni");
+
+    dataParser.parseData(str_exception);
+    coach = dataParser.getCoach();
     Assert.assertEquals(coach, null);
   }
 
   @Test
   // 要求传入[8,10,11]三个字段
   public void parseCoachTeamTest() {
+    dataParser.clear();
+
     // 正常情况
     dataParser.parseData(str_normal);
     CoachTeam coachTeam = dataParser.getCoachTeam();
@@ -194,6 +215,34 @@ public class DataParserTest {
     dataParser.parseData(str_exception);
     coachTeam = dataParser.getCoachTeam();
 
+    Assert.assertEquals(coachTeam, null);
+
+    // 多个Coach对象的情况
+    String str_muti =
+        ",,,,,,,,2012-2013,,Los Angeles Lakers,M. Brown  B. Bickerstaff  M. D'Antoni ,,,,,,,,,,,,";
+    dataParser.parseData(str_muti);
+    coachTeam = dataParser.getCoachTeam();
+    Assert.assertEquals(coachTeam.getCoachName(), "M. Brown");
+    Assert.assertEquals(coachTeam.getTeamName(), "Los Angeles Lakers");
+    Assert.assertEquals(coachTeam.getStartYear(), 2012);
+    Assert.assertEquals(coachTeam.getEndYear(), 2013);
+
+    dataParser.parseData(str_exception);
+    coachTeam = dataParser.getCoachTeam();
+    Assert.assertEquals(coachTeam.getCoachName(), "B. Bickerstaff");
+    Assert.assertEquals(coachTeam.getTeamName(), "Los Angeles Lakers");
+    Assert.assertEquals(coachTeam.getStartYear(), 2012);
+    Assert.assertEquals(coachTeam.getEndYear(), 2013);
+
+    dataParser.parseData(str_exception);
+    coachTeam = dataParser.getCoachTeam();
+    Assert.assertEquals(coachTeam.getCoachName(), "M. D'Antoni");
+    Assert.assertEquals(coachTeam.getTeamName(), "Los Angeles Lakers");
+    Assert.assertEquals(coachTeam.getStartYear(), 2012);
+    Assert.assertEquals(coachTeam.getEndYear(), 2013);
+
+    dataParser.parseData(str_exception);
+    coachTeam = dataParser.getCoachTeam();
     Assert.assertEquals(coachTeam, null);
   }
 

@@ -6,41 +6,34 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-
 import nba.r.R;
+import nba.listener.SelectionListener;
 
-import nba.listener.ClickBtnListener;
-
-public class QueryWindow extends AbstractPage {
-
+public class QueryPage extends AbstractPage {
   private static final long serialVersionUID = 1L;
-  private JRadioButton btnAnalysis, btnDetail;
-  private JButton btnPlayer, btnTeam, btnCoach, btnGym;
-  private JScrollPane scrollpane;
-  private JLabel label;
-  private JPanel imgPanel;
+
+  private JRadioButton btnAnalysis;
+  private JRadioButton btnDetail;
+  private JButton btnPlayer;
+  private JButton btnTeam;
+  private JButton btnCoach;
+  private JButton btnArena;
 
   @Override
   protected void regitstComponent() {
     R r = R.getInstance();
-    r.registObject("scrollpane", scrollpane);
-    r.registObject("imgPanel", imgPanel);
     r.registObject("btnAnalysis", btnAnalysis);
     r.registObject("btnDetail", btnDetail);
     r.registObject("btnPlayer", btnPlayer);
     r.registObject("btnTeam", btnTeam);
     r.registObject("btnCoach", btnCoach);
-    r.registObject("btnGym", btnGym);
+    r.registObject("btnArena", btnArena);
   }
 
   @Override
   protected void init() {
-    setLayout(null);
-
     ButtonGroup bg = new ButtonGroup();
 
     btnAnalysis = new JRadioButton("整体分析");
@@ -64,34 +57,30 @@ public class QueryWindow extends AbstractPage {
     btnPlayer.setContentAreaFilled(false); // 设为透明
     btnPlayer.setHorizontalTextPosition(SwingConstants.CENTER); // 设置标题位置
     btnPlayer.setVerticalTextPosition(SwingConstants.BOTTOM);
-    // button3.setBorderPainted(false); //去边框
     add(btnPlayer);
 
     btnTeam = new JButton("球 队", new ImageIcon("res/2.png"));
     btnTeam.setBounds(630, 480, 90, 100);
-    btnTeam.setFocusPainted(false);
     btnTeam.setContentAreaFilled(false);
-    btnTeam.setFocusable(true);
     btnTeam.setHorizontalTextPosition(SwingConstants.CENTER);
     btnTeam.setVerticalTextPosition(SwingConstants.BOTTOM);
     add(btnTeam);
 
     btnCoach = new JButton("教 练", new ImageIcon("res/3.png"));
     btnCoach.setBounds(770, 340, 100, 110);
-    btnCoach.setFocusPainted(false);
     btnCoach.setContentAreaFilled(false);
-    btnCoach.setFocusable(true);
     btnCoach.setHorizontalTextPosition(SwingConstants.CENTER);
     btnCoach.setVerticalTextPosition(SwingConstants.BOTTOM);
     add(btnCoach);
 
-    btnGym = new JButton("体育场", new ImageIcon("res/4.png"));
-    btnGym.setBounds(760, 480, 115, 110);
-    btnGym.setContentAreaFilled(false); // 设为透明
-    btnGym.setHorizontalTextPosition(SwingConstants.CENTER);
-    btnGym.setVerticalTextPosition(SwingConstants.BOTTOM);
-    add(btnGym);
+    btnArena = new JButton("体育场", new ImageIcon("res/4.png"));
+    btnArena.setBounds(760, 480, 115, 110);
+    btnArena.setContentAreaFilled(false); // 设为透明
+    btnArena.setHorizontalTextPosition(SwingConstants.CENTER);
+    btnArena.setVerticalTextPosition(SwingConstants.BOTTOM);
+    add(btnArena);
 
+    JLabel label;
     ImageIcon background = new ImageIcon("res/background.jpg");
     label = new JLabel(background);
     label.setBounds(0, 0, this.getWidth(), this.getHeight());// 把标签的大小位置设置为图片刚好填充整个面板
@@ -102,15 +91,19 @@ public class QueryWindow extends AbstractPage {
 
   @Override
   protected void addListener() {
-    btnPlayer.addActionListener(new ClickBtnListener());
+    btnPlayer.addActionListener(new SelectionListener(Allplayer.class, EachPlayer.class));
+    btnArena.addActionListener(new SelectionListener(AllArena.class, EachArena.class));
+    btnTeam.addActionListener(new SelectionListener(Allplayer.class, EachTeam.class));// TODO
+    btnCoach.addActionListener(new SelectionListener(Allplayer.class, EachCoach.class));// TODO
   }
 
   @Override
   protected void initPage() {
     super.initPage();
     setTitle("NBA");
-    setSize(880, 610);
+    setSize(880, 610);//TODO
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLayout(null);
   }
 }

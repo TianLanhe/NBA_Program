@@ -12,19 +12,15 @@ import nba.r.R;
 import nba.controler.DataLoadingControler;
 import nba.loader.DataLoader;
 import nba.parser.DataParser;
-import nba.window.QueryWindow;
+import nba.window.QueryPage;
 
 
 public class OpenActionListener implements ActionListener {
-
-
   public void actionPerformed(ActionEvent e) {
     JFileChooser jfc = new JFileChooser();
     jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-    int state = jfc.showOpenDialog(null);
-    R r = R.getInstance();
-    JFrame homePage = (JFrame) r.getObject("window");
 
+    int state = jfc.showOpenDialog(null);
     if (state == JFileChooser.APPROVE_OPTION) {
       DataLoader dataLoader = new DataLoader();
       DataParser dataParser = new DataParser();
@@ -32,12 +28,15 @@ public class OpenActionListener implements ActionListener {
 
       File file = jfc.getSelectedFile();
       dataLoadingControler.loadData(file.getAbsolutePath());
-      new QueryWindow();
-      
-      homePage.dispose();
-    }
+      new QueryPage().run();
 
+      closeHomePage();
+    }
   }
 
-
+  private void closeHomePage() {
+    R r = R.getInstance();
+    JFrame homePage = (JFrame) r.getObject("window");
+    homePage.dispose();
+  }
 }
