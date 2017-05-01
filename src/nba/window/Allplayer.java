@@ -7,6 +7,7 @@ import nba.listener.PlayerAgeAnalysisListener;
 import nba.listener.PlayerGameAnalysisListener;
 import nba.listener.PlayerPointAnalysisListener;
 import nba.listener.PlayerSeasonAnalysisListener;
+import nba.r.R;
 
 public class Allplayer extends AbstractPage {
 
@@ -24,7 +25,9 @@ public class Allplayer extends AbstractPage {
     getContentPane().setBackground(c);
   }
 
-  protected void regitstComponent() {}
+  protected void regitstComponent() {
+	  R.getInstance().registObject("AllPlayer", this);
+  }
 
   protected void init() {
     setLayout(null);

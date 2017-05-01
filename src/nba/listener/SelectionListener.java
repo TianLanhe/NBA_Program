@@ -8,13 +8,13 @@ import javax.swing.JRadioButton;
 import nba.r.R;
 import nba.window.AbstractPage;
 
-@SuppressWarnings("rawtypes")
 public class SelectionListener implements ActionListener {
 
-  private Class classAnalysis;
-  private Class classDetail;
+  private Class<AbstractPage> classAnalysis;
+  private Class<AbstractPage> classDetail;
   private JRadioButton btnAnalysis;
 
+  @SuppressWarnings({"rawtypes", "unchecked"})
   public SelectionListener(Class classAnalysis, Class classDetail) {
     this.classAnalysis = classAnalysis;
     this.classDetail = classDetail;
@@ -26,9 +26,9 @@ public class SelectionListener implements ActionListener {
   public void actionPerformed(ActionEvent arg0) {
     try {
       if (btnAnalysis.isSelected())
-        ((AbstractPage) classAnalysis.newInstance()).run();
+        classAnalysis.newInstance().run();
       else
-        ((AbstractPage) classDetail.newInstance()).run();
+        classDetail.newInstance().run();
     } catch (InstantiationException e) {
       e.printStackTrace();
     } catch (IllegalAccessException e) {

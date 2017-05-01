@@ -8,15 +8,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
-
 import nba.r.R;
-
-import nba.listener.PlayerClickListener;
+import nba.listener.SelectionListener;
 
 public class QueryPage extends AbstractPage {
   private static final long serialVersionUID = 1L;
-  private JRadioButton btnAnalysis, btnDetail;
-  private JButton btnPlayer, btnTeam, btnCoach, btnGym;
+
+  private JRadioButton btnAnalysis;
+  private JRadioButton btnDetail;
+  private JButton btnPlayer;
+  private JButton btnTeam;
+  private JButton btnCoach;
+  private JButton btnArena;
 
   @Override
   protected void regitstComponent() {
@@ -26,7 +29,7 @@ public class QueryPage extends AbstractPage {
     r.registObject("btnPlayer", btnPlayer);
     r.registObject("btnTeam", btnTeam);
     r.registObject("btnCoach", btnCoach);
-    r.registObject("btnGym", btnGym);
+    r.registObject("btnArena", btnArena);
   }
 
   @Override
@@ -70,13 +73,13 @@ public class QueryPage extends AbstractPage {
     btnCoach.setVerticalTextPosition(SwingConstants.BOTTOM);
     add(btnCoach);
 
-    btnGym = new JButton("体育场", new ImageIcon("res/4.png"));
-    btnGym.setBounds(760, 480, 115, 110);
-    btnGym.setContentAreaFilled(false); // 设为透明
-    btnGym.setHorizontalTextPosition(SwingConstants.CENTER);
-    btnGym.setVerticalTextPosition(SwingConstants.BOTTOM);
-    add(btnGym);
-    
+    btnArena = new JButton("体育场", new ImageIcon("res/4.png"));
+    btnArena.setBounds(760, 480, 115, 110);
+    btnArena.setContentAreaFilled(false); // 设为透明
+    btnArena.setHorizontalTextPosition(SwingConstants.CENTER);
+    btnArena.setVerticalTextPosition(SwingConstants.BOTTOM);
+    add(btnArena);
+
     JLabel label;
     ImageIcon background = new ImageIcon("res/background.jpg");
     label = new JLabel(background);
@@ -88,14 +91,17 @@ public class QueryPage extends AbstractPage {
 
   @Override
   protected void addListener() {
-    btnPlayer.addActionListener(new PlayerClickListener());
+    btnPlayer.addActionListener(new SelectionListener(Allplayer.class, EachPlayer.class));
+    btnArena.addActionListener(new SelectionListener(AllArena.class, EachArena.class));
+    btnTeam.addActionListener(new SelectionListener(Allplayer.class, EachTeam.class));// TODO
+    btnCoach.addActionListener(new SelectionListener(Allplayer.class, EachCoach.class));// TODO
   }
 
   @Override
   protected void initPage() {
     super.initPage();
     setTitle("NBA");
-    setSize(880, 610);
+    setSize(880, 610);//TODO
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(null);

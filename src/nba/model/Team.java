@@ -62,6 +62,11 @@ public class Team {
     result = result * 31 + birth_year;
     return result;
   }
+  
+  @Override
+  public String toString(){
+    return getName();
+  }
 
   public void setName(String name) {
     this.name = name;
