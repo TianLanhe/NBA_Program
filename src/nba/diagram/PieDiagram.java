@@ -6,7 +6,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.ui.RefineryUtilities;
 
-public class PieDiagram {
+public class PieDiagram extends Diagram {
     private static JFreeChart pieChart;
     private static DefaultPieDataset dataset;
     
@@ -34,6 +34,12 @@ public class PieDiagram {
         frame.pack();
         RefineryUtilities.centerFrameOnScreen(frame);
         frame.setVisible(true);
+    }
+
+    @Override
+    public void setTitle(String title) {
+        // TODO Auto-generated method stub
+        
     }
 
 //    public static void main(String[] args) {

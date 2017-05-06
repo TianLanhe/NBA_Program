@@ -6,7 +6,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.RefineryUtilities;
 
-public class LineDiagram {
+public class LineDiagram extends Diagram {
     private static String xAxis = "";
     private static JFreeChart lineChart;
     private static DefaultCategoryDataset dataset;
@@ -46,6 +46,12 @@ public class LineDiagram {
         frame.pack();
         RefineryUtilities.centerFrameOnScreen(frame);
         frame.setVisible(true);
+    }
+
+    @Override
+    public void setTitle(String title) {
+        // TODO Auto-generated method stub
+        
     }
 
 //    public static void main(String[] args) {

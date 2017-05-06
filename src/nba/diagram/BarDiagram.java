@@ -1,17 +1,23 @@
 package nba.diagram;
 
+import java.awt.Font;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.RefineryUtilities;
 
-public class BarDiagram {
+public class BarDiagram extends Diagram {
     private static String xAxis = "";
     private static JFreeChart barChart;
     private static DefaultCategoryDataset dataset;
-    
-    public BarDiagram() { }
+    private static Font font;
+
+    public BarDiagram() {
+    }
 
     // 画图前要构造变量 DefaultCategoryDataset 的值
     public BarDiagram(double[] values, String[] keys) {
@@ -19,38 +25,41 @@ public class BarDiagram {
             System.out.println("Error! Length of each paramter is not equal!");
             System.exit(0);
         }
-        
+
         dataset = new DefaultCategoryDataset();
-        
+
         for (int i = 0; i < values.length; ++i) {
             dataset.addValue(values[i], xAxis, keys[i]);
         }
     }
 
-    // 画图横坐标默认"category", 纵坐标默认”value“
     public void draw() {
-        barChart = ChartFactory.createBarChart("Bar Chart", "category", "value", dataset);
-
-        ChartFrame frame = new ChartFrame("柱状图 ", barChart, true);
+        
+        String title = super.getTitle();
+        font = new Font("微软雅黑", Font.BOLD, 14);
+        
+        barChart = ChartFactory.createBarChart(title, "测试", "value", dataset);
+        barChart.getTitle().setFont(font);
+        
+        font = new Font("微软雅黑", Font.ITALIC, 12);
+        CategoryPlot cp = barChart.getCategoryPlot();
+        CategoryAxis axis = cp.getDomainAxis();
+        axis.setLabelFont(font);
+        axis.setTickLabelFont(new Font("微软雅黑", Font.ITALIC, 12));
+        
+        ChartFrame frame = new ChartFrame(title, barChart, true);
         frame.pack();
         RefineryUtilities.centerFrameOnScreen(frame);
         frame.setVisible(true);
     }
-    
-    // 画图自定义类别类型（横坐标）和值类型（纵坐标）
-    public void draw(String categoryAxisLabel, String valueAxisLabel) {
-        barChart = ChartFactory.createBarChart("Bar Chart", categoryAxisLabel, valueAxisLabel, dataset);
 
-        ChartFrame frame = new ChartFrame("柱状图 ", barChart, true);
-        frame.pack();
-        RefineryUtilities.centerFrameOnScreen(frame);
-        frame.setVisible(true);
+    public static void main(String[] args) {
+
+        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
+        String[] fruits = { "apple", "应该", "lemon", "strawberry", "watermelon", "peer", "cherry" };
+        BarDiagram b = new BarDiagram(dataset, fruits);
+        b.setTitle(new String("统计图"));
+        b.draw();
+
     }
-
-//    public static void main(String[] args) {
-//        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
-//        String[] fruits = { "apple", "banana", "lemon", "strawberry", "watermelon", "peer", "cherry" };
-//        BarDiagram b = new BarDiagram(dataset, fruits);
-//        b.draw();
-//    }
 }
