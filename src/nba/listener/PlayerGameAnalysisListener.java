@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 
-import nba.diagram.BarDiagram;
+import nba.diagram.Diagram;
 import nba.diagram.DiagramFactory;
 import nba.model.Catalog;
 import nba.model.Player;
@@ -48,7 +48,7 @@ public class PlayerGameAnalysisListener implements ActionListener {
     System.arraycopy(pointNums, 0, keys, 0, index + 1);
     System.arraycopy(nums, 0, values, 0, index + 1);
 
-    BarDiagram b = DiagramFactory.createBarDiagram(values, keys);
+    Diagram b = DiagramFactory.createBarDiagram(values, keys);
     b.draw();
   }
 
