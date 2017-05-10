@@ -14,12 +14,12 @@ public abstract class Diagram {
     private JFreeChart diagram;
     private String frameTitle = "Í³¼ÆÍ¼";
     private String title = "";
-    private static String categoryAxisLabel = "";
-    private static String valueAxisLabel = "";
+    private String categoryAxisLabel = "";
+    private String valueAxisLabel = "";
+    
+    private DefaultCategoryDataset categoryDataset;
 
-    private static DefaultCategoryDataset categoryDataset;
-
-    public static DefaultCategoryDataset getCategoryDataset() {
+    public DefaultCategoryDataset getCategoryDataset() {
         return categoryDataset;
     }
 
@@ -71,20 +71,20 @@ public abstract class Diagram {
         this.frameTitle = frameTitle;
     }
 
-    public static String getCategoryAxisLabel() {
+    public String getCategoryAxisLabel() {
         return categoryAxisLabel;
     }
 
-    public static void setCategoryAxisLabel(String categoryAxisLabel) {
-        Diagram.categoryAxisLabel = categoryAxisLabel;
+    public void setCategoryAxisLabel(String categoryAxisLabel) {
+        this.categoryAxisLabel = categoryAxisLabel;
     }
 
-    public static String getValueAxisLabel() {
+    public String getValueAxisLabel() {
         return valueAxisLabel;
     }
 
-    public static void setValueAxisLabel(String valueAxisLabel) {
-        Diagram.valueAxisLabel = valueAxisLabel;
+    public void setValueAxisLabel(String valueAxisLabel) {
+        this.valueAxisLabel = valueAxisLabel;
     }
 
     public static void main(String[] args) {

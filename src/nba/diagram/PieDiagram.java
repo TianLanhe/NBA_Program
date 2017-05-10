@@ -6,7 +6,7 @@ import org.jfree.data.category.CategoryToPieDataset;
 import org.jfree.util.TableOrder;
 
 public class PieDiagram extends Diagram {
-    private static CategoryToPieDataset dataset;
+    private CategoryToPieDataset dataset;
 
     public PieDiagram(double[] values, String[] keys) {
         super.setCategoryDataset(values, keys);
