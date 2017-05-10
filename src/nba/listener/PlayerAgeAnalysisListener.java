@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import nba.diagram.BarDiagram;
+import nba.diagram.Diagram;
 import nba.diagram.DiagramFactory;
 import nba.model.Catalog;
 import nba.model.Player;
@@ -41,7 +41,7 @@ public class PlayerAgeAnalysisListener implements ActionListener {
     System.arraycopy(age, 0, keys, 0, index + 1);
     System.arraycopy(num, 0, values, 0, index + 1);
 
-    BarDiagram b = DiagramFactory.createBarDiagram(values, keys);
+    Diagram b = DiagramFactory.createBarDiagram(values, keys);
     b.draw();
   }
 
