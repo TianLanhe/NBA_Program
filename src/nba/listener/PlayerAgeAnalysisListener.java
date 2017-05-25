@@ -41,8 +41,8 @@ public class PlayerAgeAnalysisListener implements ActionListener {
     System.arraycopy(age, 0, keys, 0, index + 1);
     System.arraycopy(num, 0, values, 0, index + 1);
 
-    Diagram b = DiagramFactory.createBarDiagram(values, keys);
-    b.draw();
+//    Diagram b = DiagramFactory.createBarDiagram(values, keys);
+//    b.draw();
   }
 
 }

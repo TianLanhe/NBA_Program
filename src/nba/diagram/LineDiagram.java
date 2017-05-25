@@ -11,13 +11,6 @@ public class LineDiagram extends Diagram {
 
     @Override
     protected JFreeChart createDiagram() {
-        return ChartFactory.createLineChart(super.getTitle(), super.getCategoryAxisLabel(), super.getValueAxisLabel(), super.getCategoryDataset());
-    }
-
-    public static void main(String[] args) {
-        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
-        String[] fruits = { "apple", "banana", "lemon", "strawberry", "watermelon", "peer", "cherry" };
-        LineDiagram b = new LineDiagram(dataset, fruits);
-        b.draw();
+        return ChartFactory.createLineChart(super.title, super.categoryAxisLabel, super.valueAxisLabel, super.categoryDataset);
     }
 }

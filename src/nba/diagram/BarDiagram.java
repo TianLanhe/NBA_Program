@@ -11,18 +11,8 @@ public class BarDiagram extends Diagram {
 
     @Override
     protected JFreeChart createDiagram() {
-        return ChartFactory.createBarChart(super.getTitle(), super.getCategoryAxisLabel(), super.getValueAxisLabel(),
-                super.getCategoryDataset());
-    }
-
-    public static void main(String[] args) {
-
-        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
-        String[] fruits = { "apple", "应该", "lemon", "strawberry", "watermelon", "peer", "cherry" };
-        BarDiagram b = new BarDiagram(dataset, fruits);
-        b.setTitle(new String("统计图"));
-        b.draw();
-
+        return ChartFactory.createBarChart(super.title, super.categoryAxisLabel, super.valueAxisLabel,
+                super.categoryDataset);
     }
 
 }

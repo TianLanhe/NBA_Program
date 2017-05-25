@@ -117,29 +117,4 @@ public class ArrayGroup {
         return retLength;
     }
 
-    public static void main(String[] args) {
-        String[] a = { "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000" };
-        double[] b = { 70, 80, 99, 5, 24, 18, 22, 33, 55, 100 };
-
-        ArrayGroup gap = new ArrayGroup(a, b, 1991, 5);
-        String[] t1 = gap.getCategoryGroup();
-        double[] t2 = gap.getValueGroup();
-
-        for (int i = 0; i < t1.length; ++i) {
-            System.out.println("$" + t1[i] + " " + t2[i]);
-        }
-
-        String[] a1 = { "1991", "1994", "1995", "1997", "1999", "2000", "2003", "2004", "2005", "2008" };
-        double[] b1 = { 70, 80, 99, 5, 24, 18, 22, 33, 55, 100 };
-
-        ArrayGroup gap2 = new ArrayGroup(a1, b1, 1990, 2);
-        String[] t11 = gap2.getCategoryGroup();
-        double[] t22 = gap2.getValueGroup();
-
-        for (int i = 0; i < t11.length; ++i) {
-            System.out.println("$" + t11[i] + " " + t22[i]);
-
-        }
-    }
-
 }

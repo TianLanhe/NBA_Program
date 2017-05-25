@@ -48,8 +48,8 @@ public class PlayerGameAnalysisListener implements ActionListener {
     System.arraycopy(pointNums, 0, keys, 0, index + 1);
     System.arraycopy(nums, 0, values, 0, index + 1);
 
-    Diagram b = DiagramFactory.createBarDiagram(values, keys);
-    b.draw();
+//    Diagram b = DiagramFactory.createBarDiagram(values, keys);
+//    b.draw();
   }
 
 }

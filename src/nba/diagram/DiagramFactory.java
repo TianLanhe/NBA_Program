@@ -37,14 +37,4 @@ public class DiagramFactory {
         return new SpiderDiagram(values, keys);     
     }
     
-    public static void main(String[] args) {
-        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
-        String[] fruits = { "1991", "1993", "1995", "1997", "1999", "2001", "2003" };
-        Diagram bd = DiagramFactory.createDiagram("bar", dataset, fruits, 1990, 2);
-        bd.draw();
-//        LineDiagram ld = DiagramFactory.createDiagram(dataset, fruits);
-//        ld.draw();
-//        PieDiagram pd = DiagramFactory.createDiagram(dataset, fruits);
-//        pd.draw();
-    }
 }

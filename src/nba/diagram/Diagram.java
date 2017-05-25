@@ -12,12 +12,12 @@ import org.jfree.ui.RefineryUtilities;
 public abstract class Diagram {
 
     private JFreeChart diagram;
-    private String frameTitle = "Í³¼ÆÍ¼";
-    private String title = "";
-    private String categoryAxisLabel = "";
-    private String valueAxisLabel = "";
+    protected String frameTitle = "Í³¼ÆÍ¼";
+    protected String title = "";
+    protected String categoryAxisLabel = "";
+    protected String valueAxisLabel = "";
     
-    private DefaultCategoryDataset categoryDataset;
+    protected DefaultCategoryDataset categoryDataset;
 
     public DefaultCategoryDataset getCategoryDataset() {
         return categoryDataset;
@@ -87,26 +87,5 @@ public abstract class Diagram {
         this.valueAxisLabel = valueAxisLabel;
     }
 
-    public static void main(String[] args) {
-        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
-        String[] fruits = { "Æ»¹û", "Ïã½¶", "ÄûÃÊ", "³È×Ó", "Î÷¹Ï", "ÌÒ×Ó", "Ó£ÌÒ" };
-
-        Diagram bd = new BarDiagram(dataset, fruits);
-        bd.setTitle("Öù×´Í¼");
-        bd.draw();
-
-        Diagram ld = new LineDiagram(dataset, fruits);
-        ld.setTitle("ÕÛÏßÍ¼");
-        ld.draw();
-
-        Diagram pd = new PieDiagram(dataset, fruits);
-        pd.setTitle("±ıÍ¼");
-        pd.setFrameTitle("±êÌâ");
-        pd.draw();
-
-        Diagram sd = new SpiderDiagram(dataset, fruits);
-        sd.setTitle("ÖëÍøÍ¼");
-        sd.draw();
-    }
 
 }
