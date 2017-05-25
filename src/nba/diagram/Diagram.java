@@ -34,7 +34,7 @@ public abstract class Diagram {
         categoryDataset = new DefaultCategoryDataset();
 
         for (int i = 0; i < values.length; ++i) {
-            categoryDataset.addValue(values[i], "ÄãºÃ", keys[i]);
+            categoryDataset.addValue(values[i], "", keys[i]);
         }
     }
 
