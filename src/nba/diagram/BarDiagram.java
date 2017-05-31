@@ -5,14 +5,14 @@ import org.jfree.chart.JFreeChart;
 
 public class BarDiagram extends Diagram {
 
-    public BarDiagram(double[] values, String[] keys) {
-        super.setCategoryDataset(values, keys);
-    }
+  public BarDiagram(double[] values, String[] keys) {
+    super.setCategoryDataset(values, keys);
+  }
 
-    @Override
-    protected JFreeChart createDiagram() {
-        return ChartFactory.createBarChart(super.title, super.categoryAxisLabel, super.valueAxisLabel,
-                super.categoryDataset);
-    }
+  @Override
+  protected JFreeChart createDiagram() {
+    return ChartFactory.createBarChart(super.title, super.categoryAxisLabel, super.valueAxisLabel,
+        super.categoryDataset);
+  }
 
 }

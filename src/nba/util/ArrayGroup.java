@@ -4,117 +4,77 @@ import java.util.Arrays;
 
 public class ArrayGroup {
 
-    private int start;
-    private int[] memberInGroup;   // 按照间隔分组，每组所包括的 keys[i] 数量
-    private int distance;
-    private int[] keys;
-    private double[] values;
+  private int start;
+  private int distance;
+  private int[] keys;
+  private double[] values;
 
-    public ArrayGroup(String[] keys, double[] values, int start, int distance) {
+  public ArrayGroup(String[] k, double[] values, int start, int distance) {
+    setArrayGroup(k, values, start, distance);
+  }
 
-        if (start <= Integer.parseInt(keys[0])) {
-            this.keys = new int[keys.length];
-            for (int i = 0; i < keys.length; ++i) {
-                this.keys[i] = Integer.parseInt(keys[i]);
-            }
-            this.values = values;
+  public ArrayGroup() {
+    keys = new int[0];
+    values = new double[0];
+    distance = 0;
+    start = 0;
+  }
 
-        } else {  // 开始值在 keys 最小值 keys[0] 右边 
-            int pos = 0;
-            while (Integer.parseInt(keys[pos]) < start) {
-                ++pos;
-            }
-            
-            String[] temp = Arrays.copyOfRange(keys, pos, keys.length);
-            this.keys = new int[temp.length];
-            for (int i = 0; i < temp.length; ++i) {
-                this.keys[i] = Integer.parseInt(temp[i]);
-            }
-            this.values = Arrays.copyOfRange(values, pos, values.length);
+  // 传入要转换的键值数据
+  public void setArrayGroup(String[] k, double[] values, int start, int distance) {
+    this.start = start;
+    this.distance = distance;
 
+    keys = new int[k.length];
+    for (int i = 0; i < keys.length; ++i) {
+      keys[i] = Integer.parseInt(k[i]);
+    }
+
+    // 只截取start之后的数据
+    int pos = 0;
+    while (pos < keys.length && start > keys[pos])
+      ++pos;
+
+    keys = Arrays.copyOfRange(keys, pos, keys.length);
+    this.values = Arrays.copyOfRange(values, pos, values.length);
+  }
+
+  // 获得转换后的String数组
+  public String[] getCategoryGroup() {
+    String[] ret = new String[keys.length];
+
+    if (distance <= 1) {
+      for (int i = 0; i < keys.length; ++i)
+        ret[i] = Integer.toString(keys[i]);
+    } else {
+      int i = 0;
+      int j = start;
+      while (j <= keys[keys.length - 1]) {
+        ret[i++] = j + "-" + (j + distance - 1);
+        j += distance;
+      }
+      ret = Arrays.copyOfRange(ret, 0, i);
+    }
+    return ret;
+  }
+
+  // 获得转换后的double数组
+  public double[] getValueGroup() {
+    if (distance <= 1) {
+      return values;
+    } else {
+      double[] ret = new double[values.length];
+      int n = 0;
+      int j = start + distance - 1;
+      for (int i = 0; i < values.length; ++i) {
+        while (j < keys[i]) {
+          j += distance;
+          ++n;
         }
-        this.start = start;
-        this.distance = distance;
-
+        ret[n] += values[i];
+      }
+      return Arrays.copyOfRange(ret, 0, n + 1);
     }
-
-    public String[] getCategoryGroup() {
-        String[] ret;
-        if (distance <= 1) {
-            ret = new String[keys.length]; 
-            for (int i = 0; i < keys.length; ++i)
-                ret[i] = Integer.toString(keys[i]);
-            return ret;
-        }
-        
-        int len = countGroupArrayLength();
-        ret = new String[len];
-
-        groupKeys(ret);
-        return ret;
-    }
-
-    public double[] getValueGroup() {
-        if (distance <= 1) {
-            return values;
-        }
-        
-        int len = countGroupArrayLength();
-        double[] ret = new double[len];
-        
-        groupValues(ret);
-        return ret;
-    }
-
-    private void groupKeys(String[] ret) {
-
-        for (int i = 0, j = start; i < ret.length; ++i, j += distance) {
-            ret[i] = Integer.toString(j) + "-" + Integer.toString(j + distance - 1);
-        }
-    }
-
-    private void initMemberInGroup(double[] ret) {
-        memberInGroup = new int[ret.length];
-
-        int k = 0;
-        int m = 0;
-        for (int i = start; i < start + ret.length * distance; i += distance) {
-            int count = 0;
-            for (int j = 0; j < distance && m < keys.length && keys[m] < i + distance; ++j) {
-                ++count;
-                ++m;
-            }
-            memberInGroup[k] = count;
-            ++k;
-        }
-    }
-
-    private void groupValues(double[] ret) {
-        initMemberInGroup(ret);
-
-        int temp = 0;
-        for (int i = 0; i < memberInGroup.length; ++i) {
-            if (memberInGroup[i] == 0) {
-                ret[i] = 0;
-            } else {
-                for (int j = temp; j < temp + memberInGroup[i]; ++j)
-                    ret[i] += values[j];
-                temp += memberInGroup[i];
-            }
-        }
-    }
-
-    private int countGroupArrayLength() {
-
-        int retLength;
-        int max = keys[keys.length - 1];
-
-        if ((max - start + 1) % distance == 0)
-            retLength = (max - start + 1) / distance;
-        else
-            retLength = (max - start + 1) / distance + 1;
-
-        return retLength;
-    }
+  }
 
 }

@@ -5,12 +5,13 @@ import org.jfree.chart.JFreeChart;
 
 public class LineDiagram extends Diagram {
 
-    public LineDiagram(double[] values, String[] keys) {
-        super.setCategoryDataset(values, keys);
-    }
+  public LineDiagram(double[] values, String[] keys) {
+    super.setCategoryDataset(values, keys);
+  }
 
-    @Override
-    protected JFreeChart createDiagram() {
-        return ChartFactory.createLineChart(super.title, super.categoryAxisLabel, super.valueAxisLabel, super.categoryDataset);
-    }
+  @Override
+  protected JFreeChart createDiagram() {
+    return ChartFactory.createLineChart(super.title, super.categoryAxisLabel, super.valueAxisLabel,
+        super.categoryDataset);
+  }
 }
