@@ -9,12 +9,12 @@ public class PieDiagram extends Diagram {
   private CategoryToPieDataset dataset;
 
   public PieDiagram(double[] values, String[] keys) {
-    super.setCategoryDataset(values, keys);
-    dataset = new CategoryToPieDataset(super.categoryDataset, TableOrder.BY_ROW, 0);
+    super(values, keys);
   }
 
   @Override
   protected JFreeChart createDiagram() {
-    return ChartFactory.createPieChart(super.getTitle(), dataset);
+    dataset = new CategoryToPieDataset(super.categoryDataset, TableOrder.BY_ROW, 0);
+    return ChartFactory.createPieChart(super.getTitle(), dataset,true,true,false);
   }
 }

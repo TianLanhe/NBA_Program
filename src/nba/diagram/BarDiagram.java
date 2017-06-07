@@ -6,7 +6,7 @@ import org.jfree.chart.JFreeChart;
 public class BarDiagram extends Diagram {
 
   public BarDiagram(double[] values, String[] keys) {
-    super.setCategoryDataset(values, keys);
+    super(values, keys);
   }
 
   @Override

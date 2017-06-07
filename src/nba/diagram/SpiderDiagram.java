@@ -6,7 +6,7 @@ import org.jfree.chart.plot.SpiderWebPlot;
 public class SpiderDiagram extends Diagram {
 
   public SpiderDiagram(double[] values, String[] keys) {
-    super.setCategoryDataset(values, keys);
+    super(values, keys);
   }
 
   @Override
