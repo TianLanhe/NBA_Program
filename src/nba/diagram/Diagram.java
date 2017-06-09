@@ -30,9 +30,6 @@ public abstract class Diagram {
     mChartTheme.setLargeFont(new Font("微软雅黑", Font.CENTER_BASELINE, 12)); // 设置轴向字体
     mChartTheme.setRegularFont(new Font("微软雅黑", Font.PLAIN, 12)); // 设置图例字体
     ChartFactory.setChartTheme(mChartTheme);
-
-    diagram = createDiagram();
-    diagram.removeLegend();
   }
 
   // 不同统计图返回不同对象
@@ -53,6 +50,9 @@ public abstract class Diagram {
   }
 
   public void draw() {
+    diagram = createDiagram();
+    diagram.removeLegend();
+    
     ChartFrame frame = new ChartFrame(frameTitle, diagram, true);
     frame.pack();
     RefineryUtilities.centerFrameOnScreen(frame);
@@ -60,6 +60,8 @@ public abstract class Diagram {
   }
 
   public JPanel getPanel() {
+    diagram = createDiagram();
+    diagram.removeLegend();
     return new ChartPanel(diagram);
   }
 

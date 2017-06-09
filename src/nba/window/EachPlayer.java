@@ -6,6 +6,7 @@ import javax.swing.table.TableRowSorter;
 import nba.r.R;
 import nba.listener.PlayerDetailListener;
 import nba.listener.PlayerMouseListener;
+import nba.listener.PlayerSpiderListener;
 import nba.model.Catalog;
 import nba.model.NBATableModel;
 import nba.model.Player;
@@ -22,6 +23,8 @@ public class EachPlayer extends AbstractPage {
   private JTextField playerBirthTx;
   private JList<Object> playerList;
   private JTable playerTable;
+  
+  private JButton spiderDiagram;//查看蜘蛛图按钮
 
   @Override
   protected void initPage() {
@@ -45,6 +48,11 @@ public class EachPlayer extends AbstractPage {
     btnEnsure.setBounds(745, 33, 65, 26);
     getRootPane().setDefaultButton(btnEnsure);
     add(btnEnsure);
+    
+    spiderDiagram = new JButton("查看蜘蛛图");
+    spiderDiagram.setBounds(700, 120,100,30);
+    spiderDiagram.setEnabled(false);
+    add(spiderDiagram);
 
     addPlayerJlist();// 添加球员名单
 
@@ -92,6 +100,7 @@ public class EachPlayer extends AbstractPage {
   protected void addListener() {
     btnEnsure.addActionListener(new PlayerDetailListener());
     playerList.addMouseListener(new PlayerMouseListener());
+    spiderDiagram.addActionListener(new PlayerSpiderListener());
   }
 
   @Override
@@ -100,5 +109,7 @@ public class EachPlayer extends AbstractPage {
     R.getInstance().registObject("playerNameTx", playerNameTx);
     R.getInstance().registObject("playerBirthTx", playerBirthTx);
     R.getInstance().registObject("playerTable", playerTable);
+    R.getInstance().registObject("spiderDiagram", spiderDiagram);
+    R.getInstance().registObject("playerList", playerList);
   }
 }

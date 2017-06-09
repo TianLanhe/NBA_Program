@@ -11,7 +11,16 @@ public class SpiderDiagram extends Diagram {
 
   @Override
   protected JFreeChart createDiagram() {
-    SpiderWebPlot spiderwebplot = new SpiderWebPlot(super.categoryDataset);
+    SpiderWebPlot spiderwebplot = new MySpiderWebPlot(super.categoryDataset);
     return new JFreeChart(super.title, spiderwebplot);
+  }
+  
+  @Override
+  public void setCategoryDataset(double[] values, String[] keys) {
+    super.setCategoryDataset(values, keys);
+    
+    for (int i = 0; i < values.length; ++i) {
+      categoryDataset.addValue(1, "another", keys[i]);
+    }
   }
 }

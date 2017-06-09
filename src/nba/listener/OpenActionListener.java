@@ -6,6 +6,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import nba.r.R;
 
@@ -19,6 +20,8 @@ public class OpenActionListener implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     JFileChooser jfc = new JFileChooser();
     jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv");
+    jfc.setFileFilter(filter);
 
     int state = jfc.showOpenDialog(null);
     if (state == JFileChooser.APPROVE_OPTION) {
