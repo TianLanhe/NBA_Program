@@ -4,10 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
 import nba.diagram.Diagram;
 import nba.diagram.DiagramFactory;
 import nba.model.Catalog;
 import nba.model.Player;
+import nba.r.R;
 import nba.util.NBAComparator;
 
 public class PlayerAgeAnalysisListener implements ActionListener {
@@ -38,11 +43,30 @@ public class PlayerAgeAnalysisListener implements ActionListener {
     double[] values = new double[index + 1];
     String[] keys = new String[index + 1];
 
+   
     System.arraycopy(age, 0, keys, 0, index + 1);
     System.arraycopy(num, 0, values, 0, index + 1);
-
-//    Diagram b = DiagramFactory.createBarDiagram(values, keys);
-//    b.draw();
+    
+     
+    JRadioButton btnBar = (JRadioButton) R.getInstance().getObject("btnBar");
+    Diagram b;
+    
+    if(btnBar.isSelected())
+    	 b = DiagramFactory.createDiagram("bar", values, keys, 21, 10);
+ 
+    else
+         b = DiagramFactory.createDiagram("pie", values, keys, 21, 10);
+    b.setTitle("球员年限分布");
+    b.setValueAxisLabel("个数");
+    b.setCategoryAxisLabel("年龄");
+    setPanel(b);
+    }
+  public void setPanel(Diagram b){
+	  JPanel p;
+	  JFrame frame = (JFrame)R.getInstance().getObject("AllPlayer");
+	  p = b.getPanel();
+	  p.setBounds(300,100,500,300);
+	  frame.add(p);
   }
 
 }

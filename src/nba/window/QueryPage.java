@@ -93,7 +93,7 @@ public class QueryPage extends AbstractPage {
   protected void addListener() {
     btnPlayer.addActionListener(new SelectionListener(Allplayer.class, EachPlayer.class));
     btnArena.addActionListener(new SelectionListener(AllArena.class, EachArena.class));
-    btnTeam.addActionListener(new SelectionListener(Allplayer.class, EachTeam.class));// TODO
+    btnTeam.addActionListener(new SelectionListener(AllTeam.class, EachTeam.class));// TODO
     btnCoach.addActionListener(new SelectionListener(Allplayer.class, EachCoach.class));// TODO
   }
 

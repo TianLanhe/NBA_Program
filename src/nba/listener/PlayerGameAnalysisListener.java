@@ -5,22 +5,27 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
 import nba.diagram.Diagram;
 import nba.diagram.DiagramFactory;
 import nba.model.Catalog;
 import nba.model.Player;
 import nba.model.Season;
+import nba.r.R;
 
 public class PlayerGameAnalysisListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
     List<Player> players = Catalog.getInstance().getPlayers();
-    double[] games = new double[players.size()];
+    int[] games = new int[players.size()];
 
-    //累加所有球员各自的场次种树
+    //累加所有球员各自的场次数
     for (int index = 0; index < players.size(); ++index) {
-      double game = 0;
+      int game = 0;
       for (Season season : players.get(index).getSeasons()) {
         game += season.getGameNum();
       }
@@ -32,9 +37,9 @@ public class PlayerGameAnalysisListener implements ActionListener {
     double[] nums = new double[games.length];
     String[] pointNums = new String[games.length];
 
-    double pre = -1;
+    int pre = -1;
     int index = -1;
-    for (double game : games) {
+    for (int game : games) {
       if (pre != game) {
         pre = game;
         ++index;
@@ -47,9 +52,29 @@ public class PlayerGameAnalysisListener implements ActionListener {
     String[] keys = new String[index + 1];
     System.arraycopy(pointNums, 0, keys, 0, index + 1);
     System.arraycopy(nums, 0, values, 0, index + 1);
-
-//    Diagram b = DiagramFactory.createBarDiagram(values, keys);
-//    b.draw();
+   
+  
+    JRadioButton btnBar = (JRadioButton) R.getInstance().getObject("btnBar");
+    Diagram b;
+    
+    if(btnBar.isSelected())
+      b = DiagramFactory.createDiagram("bar", values, keys, 1, 100);
+    else
+      b = DiagramFactory.createDiagram("pie", values, keys, 1, 100);
+    b.setTitle("球员参赛场次分布");
+    b.setValueAxisLabel("个数");
+    b.setCategoryAxisLabel("参赛场次");
+    setPanel(b);
+  }
+  public void setPanel(Diagram b){
+	  JPanel p;
+	  JFrame frame = (JFrame)R.getInstance().getObject("AllPlayer");
+	  p = b.getPanel();
+	  p.removeAll();
+	  frame.validate();
+	  p = b.getPanel();
+	  p.setBounds(230,90,600,400);
+	  frame.add(p);
   }
 
 }
