@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -17,6 +16,15 @@ import nba.model.Season;
 import nba.r.R;
 
 public class PlayerPointAnalysisListener implements ActionListener {
+
+  private JPanel diagramPanel;
+  private JRadioButton btnBar;
+
+  public PlayerPointAnalysisListener() {
+    R r = R.getInstance();
+    diagramPanel = (JPanel) r.getObject("playerDiagramPanel");
+    btnBar = (JRadioButton) R.getInstance().getObject("btnBar");
+  }
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
@@ -32,7 +40,6 @@ public class PlayerPointAnalysisListener implements ActionListener {
         }
         avgpoints[index] = point/game;
     }
-    
 
     //所有得分排序，统计各个分数各有多少人
     Arrays.sort(avgpoints);
@@ -54,28 +61,21 @@ public class PlayerPointAnalysisListener implements ActionListener {
     String[] keys = new String[index + 1];
     System.arraycopy(pointNums, 0, keys, 0, index + 1);
     System.arraycopy(nums, 0, values, 0, index + 1);
-    
-    JRadioButton btnBar = (JRadioButton) R.getInstance().getObject("btnBar");
-    Diagram b;
-    if(btnBar.isSelected())
-      b = DiagramFactory.createDiagram("bar", values, keys, 0, 3);
+
+    String diagramType;
+    if (btnBar.isSelected())
+      diagramType = "bar";
     else
-      b = DiagramFactory.createDiagram("pie", values, keys, 0, 3);
-    b.setTitle("球员平均得分分布"); 
+      diagramType = "pie";
+
+    Diagram b =
+        DiagramFactory.createDiagram(diagramType, values, keys, Integer.parseInt(keys[0]), 3);
+    b.setTitle("球员平均得分分布");
     b.setValueAxisLabel("个数");
     b.setCategoryAxisLabel("平均得分");
-   setPanel(b);
 
+    diagramPanel.removeAll();
+    diagramPanel.add(b.getPanel());
+    diagramPanel.validate();
   }
-  public void setPanel(Diagram b){
-	  JPanel p;
-	  JFrame frame = (JFrame)R.getInstance().getObject("AllPlayer");
-	  p = b.getPanel();
-	  p.removeAll();
-	  frame.validate();
-	  p = b.getPanel();
-	  p.setBounds(230,90,600,400);
-	  frame.add(p);
-  }
-
 }

@@ -3,9 +3,9 @@ package nba.listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -19,54 +19,54 @@ import nba.util.NBAComparator;
 
 public class TeamGameAnalysisListener implements ActionListener {
 
-	  @Override
-	  public void actionPerformed(ActionEvent arg0) {
-	    double[] nums = new double[100];
-	    String[] games = new String[100];
+  private JPanel diagramPanel;
+  private JRadioButton btnBar;
 
-	    List<Team> teams = Catalog.getInstance().getTeams();
-	    NBAComparator<Team> comparator = new NBAComparator<Team>("getGameNum");
-	    teams.sort(comparator);
+  public TeamGameAnalysisListener() {
+    R r = R.getInstance();
+    diagramPanel = (JPanel) r.getObject("teamDiagramPanel");
+    btnBar = (JRadioButton) R.getInstance().getObject("btnBarTeam");
+  }
 
-	    int game = 0;
-	    int index = -1;
-	  
-	    for (Team team : teams) {
-		      if (game != team.getGameNum()) {
-		        game =team.getGameNum();
-		        ++index;
-		        games[index] = String.valueOf(game);
-		      }
-		      ++nums[index];
-		    }
-	    double[] values = new double[index + 1];
-	    String[] keys = new String[index + 1];
-	    System.arraycopy(games, 0, keys, 0, index + 1);
-	    System.arraycopy(nums, 0, values, 0, index + 1);
-	    
-	    
-	    JRadioButton btnBar = (JRadioButton) R.getInstance().getObject("btnBarTeam");
-	    Diagram b;
-	    
-	    if(btnBar.isSelected())
-	    	b = DiagramFactory.createDiagram("bar", values, keys, 11, 300);
-	 
-	    else
-	        b = DiagramFactory.createDiagram("pie", values, keys, 21, 300);
-	    b.setTitle("球队参赛场次分布");
-	    b.setValueAxisLabel("个数");
-	     b.setCategoryAxisLabel("参赛场次");
-	    setPanel(b); 
+  @Override
+  public void actionPerformed(ActionEvent arg0) {
+    List<Team> teams = new ArrayList<Team>();
+    teams.addAll(Catalog.getInstance().getTeams());
+    NBAComparator<Team> comparator = new NBAComparator<Team>("getGameNum");
+    teams.sort(comparator);
 
-	}
-	  public void setPanel(Diagram b){
-		  JPanel p;
-		  JFrame frame = (JFrame)R.getInstance().getObject("AllTeam");
-		  p = b.getPanel();
-		  p.removeAll();
-		  frame.validate();
-		  p = b.getPanel();
-		  p.setBounds(230,90,600,400);
-		  frame.add(p);
-	  }
+    double[] nums = new double[teams.size()];
+    String[] games = new String[teams.size()];
+    int game = 0;
+    int index = -1;
+    for (Team team : teams) {
+      if (game != team.getGameNum()) {
+        game = team.getGameNum();
+        ++index;
+        games[index] = String.valueOf(game);
+      }
+      ++nums[index];
+    }
+
+    double[] values = new double[index + 1];
+    String[] keys = new String[index + 1];
+    System.arraycopy(games, 0, keys, 0, index + 1);
+    System.arraycopy(nums, 0, values, 0, index + 1);
+
+    String diagramType;
+    if (btnBar.isSelected())
+      diagramType = "bar";
+    else
+      diagramType = "pie";
+
+    Diagram b =
+        DiagramFactory.createDiagram(diagramType, values, keys, Integer.parseInt(keys[0]), 300);
+    b.setTitle("球队参赛场次分布");
+    b.setValueAxisLabel("个数");
+    b.setCategoryAxisLabel("参赛场次");
+
+    diagramPanel.removeAll();
+    diagramPanel.add(b.getPanel());
+    diagramPanel.validate();
+  }
 }
