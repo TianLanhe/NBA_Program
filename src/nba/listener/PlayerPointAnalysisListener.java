@@ -5,40 +5,54 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 
-import nba.diagram.BarDiagram;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+import nba.diagram.Diagram;
 import nba.diagram.DiagramFactory;
 import nba.model.Catalog;
 import nba.model.Player;
 import nba.model.Season;
+import nba.r.R;
 
 public class PlayerPointAnalysisListener implements ActionListener {
+
+  private JPanel diagramPanel;
+  private JRadioButton btnBar;
+
+  public PlayerPointAnalysisListener() {
+    R r = R.getInstance();
+    diagramPanel = (JPanel) r.getObject("playerDiagramPanel");
+    btnBar = (JRadioButton) R.getInstance().getObject("btnBar");
+  }
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
     List<Player> players = Catalog.getInstance().getPlayers();
-    double[] points = new double[players.size()];
-
-    //累加所有球员的总得分
+    int[] avgpoints = new int[players.size()];   
+    
     for (int index = 0; index < players.size(); ++index) {
-      double point = 0;
-      for (Season season : players.get(index).getSeasons()) {
-        point += season.getPoint();
-      }
-      points[index] = point;
+    	int game = 0;
+    	int point = 0;
+        for (Season season : players.get(index).getSeasons()) {
+          game += season.getGameNum();
+          point += season.getPoint();
+        }
+        avgpoints[index] = point/game;
     }
 
     //所有得分排序，统计各个分数各有多少人
-    Arrays.sort(points);
-    double[] nums = new double[points.length];
-    String[] pointNums = new String[points.length];
+    Arrays.sort(avgpoints);
+    double[] nums = new double[avgpoints.length];
+    String[] pointNums = new String[avgpoints.length];
 
-    double pre = -1;
+    int pre = -1;
     int index = -1;
-    for (double point : points) {
-      if (pre != point) {
-        pre = point;
+    for (int avgpoint : avgpoints) {
+      if (pre != avgpoint) {
+        pre = avgpoint;
         ++index;
-        pointNums[index] = String.valueOf(point);
+        pointNums[index] = String.valueOf(avgpoint);
       }
       ++nums[index];
     }
@@ -48,8 +62,20 @@ public class PlayerPointAnalysisListener implements ActionListener {
     System.arraycopy(pointNums, 0, keys, 0, index + 1);
     System.arraycopy(nums, 0, values, 0, index + 1);
 
-    BarDiagram b = DiagramFactory.createBarDiagram(values, keys);
-    b.draw();
-  }
+    String diagramType;
+    if (btnBar.isSelected())
+      diagramType = "bar";
+    else
+      diagramType = "pie";
 
+    Diagram b =
+        DiagramFactory.createDiagram(diagramType, values, keys, Integer.parseInt(keys[0]), 3);
+    b.setTitle("球员平均得分分布");
+    b.setValueAxisLabel("个数");
+    b.setCategoryAxisLabel("平均得分");
+
+    diagramPanel.removeAll();
+    diagramPanel.add(b.getPanel());
+    diagramPanel.validate();
+  }
 }

@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -19,12 +20,14 @@ public class PlayerMouseListener implements MouseListener {
   private JTextField playerNameTx;
   private JTextField playerBirthTx;
   private JTable playerTable;
+  private JButton spiderDiagram;
 
   public PlayerMouseListener() {
     R r = R.getInstance();
     playerNameTx = (JTextField) r.getObject("playerNameTx");
     playerBirthTx = (JTextField) r.getObject("playerBirthTx");
     playerTable = (JTable) r.getObject("playerTable");
+    spiderDiagram = (JButton) r.getObject("spiderDiagram");
   }
 
   @SuppressWarnings("rawtypes")
@@ -35,6 +38,7 @@ public class PlayerMouseListener implements MouseListener {
       String Pname = PList.getSelectedValue().toString();
       Player player = NBASearcher.find(Catalog.getInstance().getPlayers(), "getName", Pname);
 
+      spiderDiagram.setEnabled(true);
       showDetails(player);
     }
   }

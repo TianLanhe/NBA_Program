@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -18,14 +19,16 @@ import nba.util.NBASearcher;
 
 public class TeamMouseListener implements MouseListener {
 
-  JTextField textShowTname;
-  JTextField textShowTabbrname;
-  JTextField textTeamBirth;
-  JTextField textTeamAge;
-  JTextField textTeamGame;
-  JTextField textTeamWin;
-  JTextField textTeamChampion;
-  JTable teamCoachTable;
+  private JTextField textShowTname;
+  private JTextField textShowTabbrname;
+  private JTextField textTeamBirth;
+  private JTextField textTeamAge;
+  private JTextField textTeamGame;
+  private JTextField textTeamWin;
+  private JTextField textTeamChampion;
+  private JTable teamCoachTable;
+  
+  private JButton spiderDiagram;
 
   public TeamMouseListener() {
     R r = R.getInstance();
@@ -37,6 +40,8 @@ public class TeamMouseListener implements MouseListener {
     textTeamWin = (JTextField) r.getObject("textTeamWin");
     textTeamChampion = (JTextField) r.getObject("textTeamChampion");
     teamCoachTable = (JTable) r.getObject("teamCoachTable");
+    
+    spiderDiagram = (JButton) r.getObject("teamSpiderDiagram");
   }
 
   @SuppressWarnings("rawtypes")
@@ -46,7 +51,8 @@ public class TeamMouseListener implements MouseListener {
       String Tname = TList.getSelectedValue().toString();
 
       Team team = NBASearcher.find(Catalog.getInstance().getTeams(), "getName", Tname);
-
+      
+      spiderDiagram.setEnabled(true);
       showDetails(team);
     }
   }

@@ -13,6 +13,7 @@ import javax.swing.table.TableRowSorter;
 
 import nba.listener.TeamDetailListener;
 import nba.listener.TeamMouseListener;
+import nba.listener.TeamSpiderListener;
 import nba.model.Catalog;
 import nba.model.NBATableModel;
 import nba.model.Team;
@@ -34,6 +35,8 @@ public class EachTeam extends AbstractPage {
   private JList<Object> teamJlist;
   private JTable teamCoachTable;
   private List<Team> teams;
+  
+  private JButton spiderDiagram;
 
   @Override
   public void initPage() {
@@ -134,6 +137,11 @@ public class EachTeam extends AbstractPage {
     add(JspTtable);
 
     addTeamJlist();
+    
+    spiderDiagram = new JButton("²é¿´Ö©ÖëÍ¼");
+    spiderDiagram.setBounds(700, 207,100,30);
+    spiderDiagram.setEnabled(false);
+    add(spiderDiagram);
   }
 
   public void addTeamJlist() {
@@ -149,19 +157,23 @@ public class EachTeam extends AbstractPage {
   protected void addListener() {
     btnEnsure.addActionListener(new TeamDetailListener());
     teamJlist.addMouseListener(new TeamMouseListener());
+    spiderDiagram.addActionListener(new TeamSpiderListener());
   }
 
   @Override
   protected void regitstComponent() {
-    R.getInstance().registObject("textTeam", textTeam);
-    R.getInstance().registObject("textShowTname", textShowTname);
-    R.getInstance().registObject("textShowTabbrname", textShowTabbrname);
-    R.getInstance().registObject("textTeamBirth", textTeamBirth);
-    R.getInstance().registObject("textTeamAge", textTeamAge);
-    R.getInstance().registObject("textTeamGame", textTeamGame);
-    R.getInstance().registObject("textTeamWin", textTeamWin);
-    R.getInstance().registObject("textTeamChampion", textTeamChampion);
-    R.getInstance().registObject("teamCoachTable", teamCoachTable);
+    R r = R.getInstance();
+    r.registObject("textTeam", textTeam);
+    r.registObject("textShowTname", textShowTname);
+    r.registObject("textShowTabbrname", textShowTabbrname);
+    r.registObject("textTeamBirth", textTeamBirth);
+    r.registObject("textTeamAge", textTeamAge);
+    r.registObject("textTeamGame", textTeamGame);
+    r.registObject("textTeamWin", textTeamWin);
+    r.registObject("textTeamChampion", textTeamChampion);
+    r.registObject("teamCoachTable", teamCoachTable);
+    r.registObject("teamList", teamJlist);
+    r.registObject("teamSpiderDiagram", spiderDiagram);
   }
 
 }

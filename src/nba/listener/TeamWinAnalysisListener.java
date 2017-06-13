@@ -11,44 +11,44 @@ import javax.swing.JRadioButton;
 import nba.diagram.Diagram;
 import nba.diagram.DiagramFactory;
 import nba.model.Catalog;
-import nba.model.Season;
+import nba.model.Team;
 import nba.r.R;
 import nba.util.NBAComparator;
 
-public class PlayerSeasonAnalysisListener implements ActionListener {
+public class TeamWinAnalysisListener implements ActionListener {
 
   private JPanel diagramPanel;
   private JRadioButton btnBar;
 
-  public PlayerSeasonAnalysisListener() {
+  public TeamWinAnalysisListener() {
     R r = R.getInstance();
-    diagramPanel = (JPanel) r.getObject("playerDiagramPanel");
-    btnBar = (JRadioButton) R.getInstance().getObject("btnBar");
+    diagramPanel = (JPanel) r.getObject("teamDiagramPanel");
+    btnBar = (JRadioButton) R.getInstance().getObject("btnBarTeam");
   }
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
-    List<Season> seasons = new ArrayList<Season>();
-    seasons.addAll(Catalog.getInstance().getSeasons());
-    NBAComparator<Season> comparator = new NBAComparator<Season>("getYear");
-    seasons.sort(comparator);
+    List<Team> teams = new ArrayList<Team>();
+    teams.addAll(Catalog.getInstance().getTeams());
+    NBAComparator<Team> comparator = new NBAComparator<Team>("getWinNum");
+    teams.sort(comparator);
 
-    double[] nums = new double[seasons.size()];
-    String[] years = new String[seasons.size()];
-    int year = 0;
+    int win = 0;
     int index = -1;
-    for (Season season : seasons) {
-      if (year != season.getYear()) {
-        year = season.getYear();
+    double[] nums = new double[teams.size()];
+    String[] wins = new String[teams.size()];
+    for (Team team : teams) {
+      if (win != team.getWinNum()) {
+        win = team.getWinNum();
         ++index;
-        years[index] = String.valueOf(year);
+        wins[index] = String.valueOf(win);
       }
       ++nums[index];
     }
 
     double[] values = new double[index + 1];
     String[] keys = new String[index + 1];
-    System.arraycopy(years, 0, keys, 0, index + 1);
+    System.arraycopy(wins, 0, keys, 0, index + 1);
     System.arraycopy(nums, 0, values, 0, index + 1);
 
     String diagramType;
@@ -57,10 +57,10 @@ public class PlayerSeasonAnalysisListener implements ActionListener {
     else
       diagramType = "pie";
 
-    Diagram b = DiagramFactory.createDiagram(diagramType, values, keys, 1946, 10);
-    b.setTitle("球员参赛赛季分布");
+    Diagram b = DiagramFactory.createDiagram(diagramType, values, keys, 11, 100);
+    b.setTitle("球队胜利场次分布");
     b.setValueAxisLabel("个数");
-    b.setCategoryAxisLabel("参赛季度");
+    b.setCategoryAxisLabel("获胜场次");
 
     diagramPanel.removeAll();
     diagramPanel.add(b.getPanel());

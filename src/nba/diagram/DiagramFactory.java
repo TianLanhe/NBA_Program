@@ -1,30 +1,31 @@
 package nba.diagram;
 
+import nba.util.ArrayGroup;
+
 public class DiagramFactory {
-    
-    public static BarDiagram createBarDiagram(double[] values, String[] keys) {
-        BarDiagram bd = new BarDiagram(values, keys);
-        return bd;
+  private static ArrayGroup arrayGroup;
+
+  public static Diagram createDiagram(String chartName, double[] values, String[] keys, int start,
+      int memberNum) {
+    arrayGroup = new ArrayGroup(keys, values, start, memberNum);
+
+    double[] groupValues = arrayGroup.getValueGroup();
+    String[] groupKeys = arrayGroup.getCategoryGroup();
+
+    return createDiagram(chartName, groupValues, groupKeys);
+  }
+
+  public static Diagram createDiagram(String chartName, double[] groupValues, String[] groupKeys) {
+    if (chartName.equals("bar")) {
+      return new BarDiagram(groupValues, groupKeys);
+    } else if (chartName.equals("line")) {
+      return new LineDiagram(groupValues, groupKeys);
+    } else if (chartName.equals("pie")) {
+      return new PieDiagram(groupValues, groupKeys);
+    } else if (chartName.equals("spider")) {
+      return new SpiderDiagram(groupValues, groupKeys);
+    } else {
+      return null;
     }
-    
-    public static LineDiagram createLineDiagram(double[] values, String[] keys) {
-        LineDiagram ld = new LineDiagram(values, keys);
-        return ld;
-    }
-    
-    public static PieDiagram createPieDiagram(double[] values, String[] keys) {
-        PieDiagram pd = new PieDiagram(values, keys);
-        return pd;
-    }
-    
-//    public static void main(String[] args) {
-//        double[] dataset = { 12, 3, 5, 7, 9, 4, 2 };
-//        String[] fruits = { "apple", "banana", "lemon", "strawberry", "watermelon", "peer", "cherry" };
-//        BarDiagram bd = DiagramFactory.createBarDiagram(dataset, fruits);
-//        bd.draw("hello", "world");
-//        LineDiagram ld = DiagramFactory.createLineDiagram(dataset, fruits);
-//        ld.draw("hello", "world");
-//        PieDiagram pd = DiagramFactory.createPieDiagram(dataset, fruits);
-//        pd.draw();
-//    }
+  }
 }

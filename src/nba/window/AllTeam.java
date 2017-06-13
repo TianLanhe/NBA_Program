@@ -8,26 +8,29 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import nba.listener.ArenaAgeAnalysisListener;
-import nba.listener.ArenaCapacityAnalysisListener;
+import nba.listener.TeamAgeAnalysisListener;
+import nba.listener.TeamGameAnalysisListener;
+import nba.listener.TeamWinAnalysisListener;
 import nba.r.R;
 
-public class AllArena extends AbstractPage {
+public class AllTeam extends AbstractPage {
 
   private static final long serialVersionUID = 1L;
 
-  private JButton btnCapacity;// 体育场容量分布
-  private JButton btnArenaAge;// 体育场使用年限
+  private JButton btnTeamwin_num;
+  private JButton btnTeamgame_num;
+  private JButton btnTeamage;
+
   private JRadioButton btnBar;
   private JRadioButton btnPie;
 
-  private JPanel diagramPanel;// 图形面板
+  private JPanel diagramPanel;
 
   @Override
   protected void initPage() {
     super.initPage();
 
-    setTitle("体育场整体分析");
+    setTitle("球队整体分析");
     Color c = new Color(202, 225, 255);
     getContentPane().setBackground(c);
 
@@ -36,48 +39,53 @@ public class AllArena extends AbstractPage {
 
   @Override
   protected void regitstComponent() {
-    R.getInstance().registObject("diagramPanel", diagramPanel);
-    R.getInstance().registObject("btnBarArena", btnBar);
+    R.getInstance().registObject("teamDiagramPanel", diagramPanel);
+    R.getInstance().registObject("btnBarTeam", btnBar);
+    R.getInstance().registObject("btnPieTeam", btnPie);
   }
 
   @Override
   protected void init() {
+    btnTeamage = new JButton("球队年限分布");
+    btnTeamage.setBounds(20, 120, 140, 60);
+    add(btnTeamage);
+
+    btnTeamgame_num = new JButton("球队参赛场次分布");
+    btnTeamgame_num.setBounds(20, 240, 140, 60);
+    add(btnTeamgame_num);
+
+    btnTeamwin_num = new JButton("球队胜利场次分布");
+    btnTeamwin_num.setBounds(20, 360, 140, 60);
+    add(btnTeamwin_num);
+
     ButtonGroup bg = new ButtonGroup();
+
     btnBar = new JRadioButton("柱状图");
     btnBar.setBounds(690, 0, 100, 40);
     btnBar.setFont(new Font("楷体", Font.BOLD, 16));
     btnBar.setContentAreaFilled(false); // 设为透明色
-    btnBar.setActionCommand("bar");
     add(btnBar);
 
     btnPie = new JRadioButton("扇形图");
     btnPie.setBounds(770, 0, 100, 40);
     btnPie.setFont(new Font("楷体", Font.BOLD, 16));
     btnPie.setContentAreaFilled(false); // 设为透明色
-    btnPie.setActionCommand("pie");
     add(btnPie);
 
     bg.add(btnBar); // 将btnAnalysis btnDetail加入ButtonGroup中
     bg.add(btnPie);
     btnBar.setSelected(true);// 默认是柱状图
 
-    btnArenaAge = new JButton("体育场使用年限");
-    btnArenaAge.setBounds(20, 120, 140, 60);
-    add(btnArenaAge);
-
-    btnCapacity = new JButton("体育场容量分布");
-    btnCapacity.setBounds(20, 320, 140, 60);
-    add(btnCapacity);
-
     diagramPanel = new JPanel();
     diagramPanel.setBounds(175, 70, 670, 470);
-    diagramPanel.setBackground(new Color(202,225,255));
+    diagramPanel.setBackground(new Color(202, 225, 255));
     add(diagramPanel);
   }
 
   @Override
   protected void addListener() {
-    btnArenaAge.addActionListener(new ArenaAgeAnalysisListener());
-    btnCapacity.addActionListener(new ArenaCapacityAnalysisListener());
+    btnTeamgame_num.addActionListener(new TeamGameAnalysisListener());
+    btnTeamage.addActionListener(new TeamAgeAnalysisListener());
+    btnTeamwin_num.addActionListener(new TeamWinAnalysisListener());
   }
 }
